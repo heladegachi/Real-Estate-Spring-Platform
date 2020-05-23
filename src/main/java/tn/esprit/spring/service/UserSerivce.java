@@ -11,5 +11,8 @@ public interface UserSerivce {
 	void deleteUser(String id);
 	User updateUser(User u);
 	User retrieveUser(String id);
+	User authenticate(String login, String password);
+	List<User> getAllUsers();
+	long addOrUpdateUser(User usr);
 	
 }

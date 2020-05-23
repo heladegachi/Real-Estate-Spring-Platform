@@ -1,0 +1,139 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:f="http://java.sun.com/jsf/core" 
+ xmlns:h="http://java.sun.com/jsf/html" 
+ xmlns:ui="http://java.sun.com/jsf/facelets" 
+ template="/template/template2.xhtml">
+<ui:param name="page_name" value="Accueil" />
+<ui:define name="content"> 
+<!-- BEGIN : TP1 JSF Introduction Login --> 
+
+
+
+
+
+<h:head>
+
+
+		<link href="../../resources/assets/css/vendor.css"  rel="stylesheet" />
+		<link href="../../resources/assets/css/font-awesome.css"  rel="stylesheet" />
+		<link href="../../resources/assets/css/theme-blue-orange_red.css"  rel="stylesheet" />
+		<link href="../..resources/assets/css/custom.css"  rel="stylesheet" />
+		<link href="../../resources/assets/css/ie-fix.css"  rel="stylesheet" />
+		<link href="../../resources/assets/img/favicon.ico" rel="stylesheet" />
+		<link href="../../resources/assets/img/favicon.ico" rel="stylesheet" type="image/x-icon" />
+
+</h:head>
+
+
+
+
+
+
+
+
+
+
+
+<body>
+
+  
+            
+            <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+            
+            
+            
+           
+			
+			
+<h:panelGroup>
+
+
+<h:outputText value="Bonjour #{userController.authenticatedUser.prenom} #{userController.authenticatedUser.nom}" />
+			
+<h:panelGroup columns="2">
+<h:form>
+<table> 
+
+
+  <tr><td><h:outputText value="Nom"></h:outputText></td> 
+  <td><h:inputText value="#{userController.nom}"></h:inputText></td></tr>
+   <tr><td><h:outputText value="Prenom"></h:outputText></td>
+    <td><h:inputText value="#{userController.prenom}"></h:inputText></td></tr> 
+    
+<tr><td><h:outputText value="Login (Email)"></h:outputText></td><td><h:inputText 
+value="#{userController.email}"></h:inputText></td></tr> 
+<tr><td><h:outputText value="Mot de Passe"></h:outputText></td>
+ <td><h:inputSecret value="#{userController.password}"></h:inputSecret></td></tr>
+
+    
+    <tr> 
+    <td><h:outputText value="Role"></h:outputText></td> 
+    <td><h:selectOneMenu value="#{userController.type}" > 
+    <f:selectItem itemLabel="Choisir le Role" itemValue="#{null}"  /> 
+    <f:selectItems value="#{userController.types}" /> 
+    </h:selectOneMenu></td> 
+    </tr>
+    
+    
+    
+    <tr><td colspan="2"> <h:commandButton value="Ajouter User" action="#{userController.ajouterUser()}" /></td> 
+    <h:commandButton value="Mettre A jour User" action="#{userController.updateUser()}" /></tr>
+    
+    </table>
+    </h:form>
+    </h:panelGroup>
+		  
+    
+    
+    <h:panelGroup columns="2"> 
+    <h:form> 
+    <h:dataTable value="#{userController.users}" var="user" border="1">
+	<h:column><f:facet name="header"><h:outputText value="Login (Email)" /></f:facet> 
+	<h:outputText value="#{user.email}" /></h:column> 
+	<h:column><f:facet name="header"><h:outputText value="Prenom" /></f:facet> 
+	<h:outputText value="#{user.prenom}" /></h:column> 
+	<h:column><f:facet name="header"><h:outputText value="Nom" /></f:facet> 
+	<h:outputText value="#{user.nom}" /></h:column> 
+	<h:column><f:facet name="header"><h:outputText value="Role" /></f:facet> 
+	<h:outputText value="#{user.type}" /></h:column> 
+	
+	<h:column> 
+	<f:facet name="header"><h:outputText value="Action" /></f:facet> 
+	<h:commandButton action="#{userController.removeUser(user.id)}" value="Supprimer" />
+	
+	<h:commandButton action="#{userController.displayUser(user)}" value="Afficher" />
+
+	</h:column>
+	
+	
+	
+</h:dataTable>
+</h:form>
+</h:panelGroup>
+
+</h:panelGroup>
+
+
+
+<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places,drawing,geometry"></script>
+    <script type="text/javascript" src="http://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+   
+    <script type="text/javascript" src="../../resources/assets/js/vendor.js"></script>
+   
+    <script type="text/javascript" src="../../resources/assets/js/demodata.js"></script>
+ 
+    <script type="text/javascript" src="../../resources/assets/js/app.js"></script>
+ 
+    <script type="text/javascript" src="../../resources/assets/js/demo.js"></script>
+    
+   
+    
+    </body>
+    
+</ui:define>
+</ui:composition>
+
+
+

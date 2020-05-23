@@ -10,4 +10,16 @@ public interface AnnService {
 	void deleteAnnonce(String id);
 	Annonce updateAnnonce(Annonce r);
 	Annonce retrieveAnnonce(String id);
+	Annonce retrieveAnnonceid(long id);
+	
+	
+	public long ajouterAnnReview(AnnonceReview annRev);
+	List<Annonce> getAllAnnonces();
+	long addOrUpdateAnnonce(Annonce ann);
+	Annonce ajoutAnnonce(Annonce r);
+	List<AnnonceReview> getAllReviewsByAnnonce(long annonceid);
+	void acceptAnnonceJPQL(Long annId);
+	void denyAnnonceJPQL(Long annId);
+	
 }
+

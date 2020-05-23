@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.faces.bean.RequestScoped;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import tn.esprit.spring.entity.FileResponse;
@@ -33,6 +35,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tn.esprit.spring.entity.*;
 import tn.esprit.spring.service.*;
 @RestController
+@Named
+@RequestScoped
 public class FileController {
 	 private FileSystemStorageService storageService;
 

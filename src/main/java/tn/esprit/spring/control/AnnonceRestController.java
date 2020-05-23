@@ -20,7 +20,7 @@ public class AnnonceRestController {
 	 @Autowired 
 	 AnnServiceImpl annService; 
 	 
-	 // http://localhost:8081/SpringMVC/servlet/retrieve-all-annonce
+	 // http://localhost:8081/SpringMVC/servlet/retrieve-all-annonces
 	 @GetMapping("/retrieve-all-annonces") 
 	 @ResponseBody 
 	 public List<Annonce> getAnnonces() { 

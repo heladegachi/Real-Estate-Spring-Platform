@@ -59,6 +59,39 @@ public class User {
 	private Set<Fiche> fiche;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Reclamation> Reclamations;
+	
+	private String login;
+	
+	
+	private Boolean loggedIn;
+	
+	
+
+	
+	private Long userIdToBeUpdated; 
+	
+	
+	
+	
+	public Boolean getLoggedIn() {
+		return loggedIn;
+	}
+	public void setLoggedIn(Boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+	
+	public Long getUserIdToBeUpdated() {
+		return userIdToBeUpdated;
+	}
+	public void setUserIdToBeUpdated(Long userIdToBeUpdated) {
+		this.userIdToBeUpdated = userIdToBeUpdated;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -169,10 +202,7 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", cin=" + cin + ", tel=" + tel + ", email="
-				+ email + ", codepostal=" + codepostal + ", adresse=" + adresse + ", profession=" + profession
-				+ ", relation=" + relation + ", password=" + password + ", datenaissance=" + datenaissance + ", type="
-				+ type + "]";
+		return "User [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", email=" + email + ", type=" + type + "]";
 	}
 	public User(Long id, String prenom, String nom, Long cin, Long tel, String email, Long codepostal, String adresse,
 			String profession, String relation, String password, Date datenaissance, Type type) {
@@ -195,6 +225,33 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public User(String prenom, String nom, String email) {
+		super();
+		this.prenom = prenom;
+		this.nom = nom;
+		this.email = email;
+	}
+	public User(String prenom, String nom, String email, String password, Type type) {
+		super();
+		this.prenom = prenom;
+		this.nom = nom;
+		this.email = email;
+		this.password = password;
+		this.type = type;
+	}
+	
+	
+	public User(Long userIdToBeUpdated ,String prenom, String nom, String email, String password, Type type) {
+		super();
+		this.prenom = prenom;
+		this.nom = nom;
+		this.email = email;
+		this.password = password;
+		this.type = type;
+		this.userIdToBeUpdated = userIdToBeUpdated;
+	}
+
+	
 	
 	
 	

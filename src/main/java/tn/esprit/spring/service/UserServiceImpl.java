@@ -1,4 +1,6 @@
 package tn.esprit.spring.service;
+import tn.esprit.spring.entity.User;
+
 import tn.esprit.spring.entity.*;
 import tn.esprit.spring.service.*;
 import java.util.List;
@@ -50,6 +52,30 @@ public User retrieveUser(String id) {
 	return u;
 	
 }
+
+
+
+
+@Override 
+public User authenticate(String login, String password) {
+	return userRepository.getUserByEmailAndPassword(login, password); 
+	}
+
+
+
+@Override 
+public List<User> getAllUsers() {
+	return (List<User>) userRepository.findAll(); 
+	}
+
+
+@Override 
+public long addOrUpdateUser(User usr) {
+	 userRepository.save(usr);
+	 return usr.getId(); }
+
+
+
 
 }
 
