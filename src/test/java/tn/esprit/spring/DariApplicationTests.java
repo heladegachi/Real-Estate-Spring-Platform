@@ -8,20 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import tn.esprit.spring.entity.Annonce;
-import tn.esprit.spring.entity.State;
-import tn.esprit.spring.service.AnnReviewService;
-import tn.esprit.spring.service.AnnReviewServiceImpl;
-import tn.esprit.spring.service.AnnServiceImpl;
-import tn.esprit.spring.service.NotificationServiceImpl;
 import tn.esprit.spring.control.AnnonceController;
 import tn.esprit.spring.control.AnnonceReviewController;
 import tn.esprit.spring.control.UserController;
-import tn.esprit.spring.entity.*;
+import tn.esprit.spring.entity.Action;
+import tn.esprit.spring.entity.Annonce;
+import tn.esprit.spring.entity.Notification;
+import tn.esprit.spring.entity.State;
 import tn.esprit.spring.entity.Type;
 import tn.esprit.spring.entity.User;
+import tn.esprit.spring.repository.AnnonceReviewRepository;
+import tn.esprit.spring.service.AnnReviewService;
+import tn.esprit.spring.service.AnnServiceImpl;
+import tn.esprit.spring.service.NotificationServiceImpl;
+import tn.esprit.spring.service.SubscripService;
 import tn.esprit.spring.service.UserSerivce;
-import tn.esprit.spring.service.UserServiceImpl;
+
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DariApplicationTests {
@@ -36,9 +39,14 @@ public class DariApplicationTests {
 	@Autowired
 	UserController uc;
 	@Autowired
-	AnnonceReviewController annonceRevController;
+	AnnonceReviewController arc;
 	@Autowired
 	NotificationServiceImpl notser;
+	@Autowired
+	AnnonceReviewRepository arr;
+	@Autowired
+	SubscripService subsser;
+	
 
 	
 	
@@ -50,8 +58,12 @@ public class DariApplicationTests {
 		 User u3 = new User("user2","simple","user2@gmail.com","user2",Type.SimpleUser);
 		 Notification not = new Notification( "okay", new Date() , Action.Added, false);
 		 
-		 //notser.save(not);
 		 
+		 //subsser.changePriceJPQL(22000, (long) 2);
+		 //notser.save(not);
+		 //ars.getAllReviewsByAnnonce(24);
+		 //arr.deleteAnnonceReview(79);
+		 //arc.deleteAnnonceReviewById(86);
 		 //ars.deleteAnnonceReview(9);
 		//us.addUser(u2);
 		//us.addUser(u);

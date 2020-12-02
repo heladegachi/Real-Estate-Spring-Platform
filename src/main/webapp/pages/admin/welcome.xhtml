@@ -134,6 +134,8 @@
                                             
                                                
                                              <ui:repeat value="#{notificationController.notifications}" var="notification">
+                                             <h:panelGroup rendered="#{notification.read eq '0'}">
+                                            	
                                                                                    
                                             <li class="activity__item">
                                             
@@ -144,19 +146,36 @@
                                               <div class="activity__time">#{notification.createdAt}</div>
                                               <div class="activity__title"><a>#{notification.user.nom} #{notification.user.prenom}</a> #{notification.action} a property  <a>#{notification.annonce.title}</a>
                                               </div>
-                                            
+                                            <div>
+                                              <h:form>
+                                               <h:commandLink action = "#{notificationController.putasRead(notification.notificationId)}" value = "Mark as Read" class="widget__btn js-widget-btn"  > 
+                                              </h:commandLink>
+                                              </h:form>
+							                  
+							                  </div>
 											</h:panelGroup>
+											
+											
+											
 											  <h:panelGroup rendered="#{notification.action eq null}">
 													<svg class="activity__icon">
-                                                <use href="#icon-remove--property"></use>
+                                                <use href="#icon-change--property"></use>
                                               </svg>
                                               <div class="activity__time">#{notification.createdAt}</div>
                                               <div class="activity__title"><a>A #{notification.message}</a> with the Title:  <a>#{notification.annonce.title}</a>
                                               
                                               <a> <h:form>  <h:commandLink action = "#{annonceController.gotoAnnonceDetail(notification.annonce)}" value = " Show The Property Detail Page #{notification.annonce.title}" class="widget__btn js-widget-btn"  > </h:commandLink> </h:form>
                                                </a> </div>
-                                            
+                                            <div>
+                                              <h:form>
+                                               <h:commandLink action = "#{notificationController.putasRead(notification.notificationId)}" value = "Mark as Read" class="widget__btn js-widget-btn"  > 
+                                              </h:commandLink>
+                                              </h:form>
+							                  
+							                  </div>
 											</h:panelGroup>
+											
+											
 											<h:panelGroup rendered="#{notification.action eq 'Added'}">
 											  
 											         <svg class="activity__icon">
@@ -165,16 +184,51 @@
 											<div class="activity__time">#{notification.createdAt}</div>
                                               <div class="activity__title"><a>#{notification.user.nom} #{notification.user.prenom}</a> #{notification.action} a property with the Title: <a>#{notification.annonce.title}</a>
                                               <a> <h:form>  <h:commandLink action = "#{annonceController.gotoAnnonceDetail(notification.annonce)}" value = " Show The Property Detail Page #{notification.annonce.title}" class="widget__btn js-widget-btn"  > </h:commandLink> </h:form> </a> </div>
-                                            
+                                            <div>
+                                              <h:form>
+                                               <h:commandLink action = "#{notificationController.putasRead(notification.notificationId)}" value = "Mark as Read" class="widget__btn js-widget-btn"  > 
+                                              </h:commandLink>
+                                              </h:form>
+							                  
+							                  </div>
 											</h:panelGroup> 
+											
+											<h:panelGroup rendered="#{notification.action eq 'Paid'}">
+											  
+											         <svg class="activity__icon">
+                                                <use href="#icon-money-save"></use>
+                                              </svg>
+											<div class="activity__time">#{notification.createdAt}</div>
+                                              <div class="activity__title"><a>#{notification.user.nom} #{notification.user.prenom}</a> #{notification.action} for a property with the Title: <a>#{notification.annonce.title}</a>
+                                              <a> <h:form>  <h:commandLink action = "#{annonceController.gotoAnnonceDetail(notification.annonce)}" value = " Show The Property Detail Page #{notification.annonce.title}" class="widget__btn js-widget-btn"  > </h:commandLink> </h:form> </a> </div>
+                                            <div>
+                                              <h:form>
+                                               <h:commandLink action = "#{notificationController.putasRead(notification.notificationId)}" value = "Mark as Read" class="widget__btn js-widget-btn"  > 
+                                              </h:commandLink>
+                                              </h:form>
+							                  
+							                  </div>
+											</h:panelGroup> 
+											
+											
 											<h:panelGroup rendered="#{notification.action eq 'Updated'}">
 											  
 											         <svg class="activity__icon">
-                                                <use href="##icon-edit--post"></use>
-                                              </svg>
+                                                <use href="#icon-edit--property"></use> </svg> 
 											<div class="activity__time">#{notification.createdAt}</div>
                                               <div class="activity__title"><a>#{notification.user.nom} #{notification.user.prenom}</a> #{notification.action} a property with the Title: <a>#{notification.annonce.title}</a>
-                                              <a> <h:form>  <h:commandLink action = "#{annonceController.gotoAnnonceDetail(notification.annonce)}" value = " Show The Property Detail Page #{notification.annonce.title}" > </h:commandLink> </h:form> </a> </div>
+                                              <a> <h:form>  
+                                              <h:commandLink action = "#{annonceController.gotoAnnonceDetail(notification.annonce)}" value = " Show The Property Detail Page #{notification.annonce.title}"  class="widget__btn js-widget-btn" > 
+                                              </h:commandLink> 
+                                              </h:form> </a> </div>
+                                              
+                                              <div>
+                                              <h:form>
+                                               <h:commandLink action = "#{notificationController.putasRead(notification.notificationId)}" value = "Mark as Read" class="widget__btn js-widget-btn"  > 
+                                              </h:commandLink>
+                                              </h:form>
+							                  
+							                  </div>
                                             
 											</h:panelGroup> 
 		
@@ -182,38 +236,12 @@
                                               
                                               </li>
                                             
+                                            </h:panelGroup>
                                             </ui:repeat>
                                             
                                             
                                    
-                                            <li class="activity__date">13.01.2016</li>
-                                            <li class="activity__item">
-                                              <svg class="activity__icon">
-                                                <use href="#icon-change--property"></use>
-                                              </svg>
-                                              <div class="activity__time">5.31 AM</div>
-                                            </li>
-                                           
-                                           
-                                           
-                                                  	 <svg class="activity__icon">
-                                                <use href="#icon-get--review"></use>
-                                              </svg>
-                                              <svg class="activity__icon">
-                                                <use href="#icon-edit--property"></use> </svg>                                             
-                                           <svg class="activity__icon">
-                                                <use href="#icon-get--stars"></use>
-                                              </svg>
                                           
-                                            
-                                              <svg class="activity__icon">
-                                                <use href="#icon-add--gallery"></use>
-                                              </svg>
-                                               <svg class="activity__icon">
-                                                <use href="#icon-edit--gallery"></use>
-                                              </svg>
-                                              
-                                              
                                            
                                           </ul>
                                           <div class="widget__footer"><a class="widget__more">Show more activity</a></div>

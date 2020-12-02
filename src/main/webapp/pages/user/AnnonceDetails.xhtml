@@ -72,12 +72,18 @@
                     <div class="property__price"><strong class="property__price-value">  #{annonceController.price} </strong><span class="property__price-label">Inclusive TVA</span></div>
                    
                     <div class="property__actions">
-                      <button type="button" class="btn--default"><i class="fa fa-refresh"></i>Request Visit</button>
-                      
+                    
+       
+                      <h:panelGroup rendered="#{not empty userController.authenticatedUser.id and  userController.authenticatedUser.id != annonceController.user.id }">
+                     	
+                      <a href="VisiteReelleClient.jsf" class="btn--default">Request Visit</a>	
+                      </h:panelGroup>
+												
                       <h:panelGroup rendered="#{not empty userController.authenticatedUser.id and  userController.authenticatedUser.id == annonceController.user.id }">
-									 				
-									          <h:commandButton action="#{annonceController.updateAnnonce()}" value="Update"    class="btn--default"   ></h:commandButton>
-									          <h:commandButton action="#{annonceController.removeAnnonce(annonceController.id)}" value="Delete"    class="btn--default" />
+							<h:form>	
+												<a href="AnnonceUpdate.jsf" class="btn--default">Update</a>	
+									          <h:commandButton action="#{annonceController.removeAnnonceL(annonceController.currentAnnonce.id)}" value="Delete"    class="btn--default" />
+									</h:form>
 									</h:panelGroup>
                     </div>
                   </div>
@@ -126,9 +132,9 @@
                   </div>
                   <div class="property__info">
                     <div class="property__info-item">Property type: <strong> Apartment</strong></div>
-                    <div class="property__info-item">Built Up: <strong> 265 Sq Ft</strong></div>
-                    <div class="property__info-item">Date: <strong> 11/03/2016</strong></div>
-                    <div class="property__info-item">Land Size: <strong> 100 Sq Ft</strong></div>
+                    <div class="property__info-item">Built Up: <strong> #{annonceController.extSurface} m²</strong></div>
+                    <div class="property__info-item">Date: <strong> #{annonceController.createdAt}</strong></div>
+                    <div class="property__info-item">Land Size: <strong> #{annonceController.extSurface} m²</strong></div>
                   </div>
                   <div class="property__plan">
                     <dl class="property__plan-item">
@@ -138,7 +144,7 @@
                         </svg>
                       </dt>
                       <dd class="property__plan-title">Area</dd>
-                      <dd class="property__plan-value">120</dd>
+                      <dd class="property__plan-value">#{annonceController.extSurface}</dd>
                     </dl>
                     <dl class="property__plan-item">
                       <dt class="property__plan-icon property__plan-icon--window">
@@ -188,29 +194,53 @@
                     </div>
                     <button type="button" class="property__btn-more js-unhide">More information ...</button>
                   </div>
+                  
+             
+             <h:panelGroup rendered="#{not empty annonceController.annoncePosition.lat and annonceController.annoncePosition.lat != 0  }">
+                  
                   <div class="widget js-widget widget--details">
                     <div class="widget__content">
                       <div class="map map--properties">
-                        <div class="map__buttons">
-                          <button type="button" class="map__change-map js-map-btn active">Property Map</button>
-                          <button type="button" class="map__change-panorama js-panorama-btn">Street view</button>
-                        </div>
+                        
+                        <h:form>
+                        <h:commandButton value="View Property Marker" action="#{markerSelectionView.changelat(annonceController.annoncePosition.lat, annonceController.annoncePosition.lng)}"  class="form__submit" />   
+                      </h:form>
+                        
+                        
+                        
                         <div class="map__wrap">
-                          <div data-type="map" class="map__view js-map-canvas"></div>
-                          <div data-type="panorama" class="map__view map__view--panorama js-map-canvas"></div>
+                          
+                          <div>
+                          <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+ 
+							 
+							       <h:form prependId="false">
+							    <p:growl id="growl" showDetail="true" />
+							 
+							    <p:gmap id="gmap" center="#{annonceController.annoncePosition.lat}, #{annonceController.annoncePosition.lng}" zoom="13" type="HYBRID" model="#{markerSelectionView.simpleModel}"  style="width:100%;height:400px">
+							        <p:ajax event="overlaySelect" listener="#{markerSelectionView.onMarkerSelect}" update="growl" />
+							    </p:gmap>
+							</h:form>
+							</div>
+                          
                         </div>
                       </div>
                     </div>
                   </div>
+                  
+                  
+                  </h:panelGroup>
+                  
+                  
                   <div class="widget js-widget widget--details">
                     <div class="widget__content">
                       <div data-sr="enter bottom move 80px, scale(0), over 0s" data-animate-end="animate-end" class="worker js-unhide-block vcard worker--list worker--details">
-                        <div class="worker__photo"><a href="agent_profile.html" class="item-photo item-photo--static"><img src="../../resources/assets/media-demo/workers/worker-1.jpg" alt="Christopher Pakulla" class="photo"/>
+                        <div class="worker__photo"><a href="" class="item-photo item-photo--static"><img src="../../resources/assets/media-demo/workers/worker-1.jpg" alt="Christopher Pakulla" class="photo"/>
                             <figure class="item-photo__hover"><span class="item-photo__more">View Details</span></figure></a></div>
                         <div class="worker__intro">
                           <div class="worker__intro-head">
                             <div class="worker__intro-name">
-                              <h3 class="worker__name fn">#{annonceController.user.nom}</h3>
+                              <h3 class="worker__name fn">#{annonceController.user.nom} #{annonceController.user.prenom}</h3>
                               <div class="worker__post">Realtor, West USA Realty</div>
                             </div>
                             <div class="worker__intro-brand"><a class="worker__company"><img src="../../resources/assets/media-demo/partners/logo-company-proera.png" alt="pro"/></a>
@@ -264,21 +294,27 @@
                             <ul class="comment__list">
                             
                               
-                              
+                              <h:panelGroup rendered="#{annonceRevController.countReviews(annonceController.annonceReviews) != 0}">
                               <ui:repeat value="#{annonceController.annonceReviews}" var="annonceReview">
                               
                               <li class="comment__item">
                                 <div class="comment__item-body js-comment-item">
                                   <div class="comment__avatar"><img src="../../resources/assets/media-demo/avatars/02.jpg" alt=""></img></div>
-                                  <div class="comment__item-right">
-                                    <button class="comment__item-btn">Edit</button>
+                                  
+                                  
+                                  <h:panelGroup rendered="#{not empty userController.authenticatedUser.id and  userController.authenticatedUser.id == annonceReview.user.id }">
+								<div class="comment__item-right">
+                                    
                                        <h:form>
                          				<h:commandLink action = "#{annonceRevController.deleteAnnonceReviewById(annonceReview.id)}" value = "Delete" id="btn" class="properties__link" ></h:commandLink>
                          			   </h:form>
                                   </div>
-                                  <div class="comment__info"><span class="comment__author">#{annonceReview.user.nom} </span><span class="comment__date">Oct 3, 2014 at 3:23pm</span>
+                                  </h:panelGroup>
+                                  
+                                  
+                                  <div class="comment__info"><span class="comment__author">#{annonceReview.user.nom} #{annonceReview.user.prenom}   <p:rating value="#{annonceReview.rating}" readonly="true" /> </span><span class="comment__date">#{annonceReview.createdAt} </span>
                                     <div class="comment__content">
-                                    
+       									 
                                     #{annonceReview.text}
                                      
 									</div>
@@ -289,6 +325,7 @@
                               </li>
                               
                               </ui:repeat>
+                              </h:panelGroup>
                            
                             
                               
@@ -296,6 +333,7 @@
                             </ul>
                             <div class="comment__footer">
                               <!-- BEGIN PAGINATION-->
+                              <h:panelGroup rendered="#{annonceRevController.countReviews(annonceController.annonceReviews) > 3}">
                               <nav class="listing__pagination">
                                 <ul class="pagination-custom">
                                   <li><a href="#"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span></a></li>
@@ -308,6 +346,7 @@
                                   <li><a href="#"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span><span class="sr-only">Next</span></a></li>
                                 </ul>
                               </nav>
+                              </h:panelGroup>
                               <!-- END PAGINATION-->
                               <div class="comment__form">
                                 <h3 class="comment__form-title">Leave a comment</h3>
@@ -318,25 +357,57 @@
                                   <form action="#" class="form form--flex js-parsley form--comment"><span class="comment__form-headline"></span>
                                    <h:panelGroup columns="2">
 									<h:form>
+                                    
                                     <div class="row">
                                       <div class="form-group form-group--col-6">
                                         <label for="in-comment-name" class="form__label control-label ">  #{userController.authenticatedUser.prenom} _  #{userController.authenticatedUser.nom}</label>
                                      
                                       </div>
                                       
+                                                                           
 
 	
                                       <div class="form-group">
-                                        <h:inputText value="#{annonceRevController.text}" id="in-comment-message"  class="form-control form__in form__in--textarea"></h:inputText>
+                                      
+                                      
+                                      
+										                                      	
+										
+										    <p:growl id="messages" showDetail="true" />
+										 
+										    <h:panelGrid columns="2" cellpadding="5">
+										        
+										        <h:outputText value="Star Rating:" />
+										        <p:rating value="#{ratingView.rating3}">
+										            <p:ajax event="rate" listener="#{ratingView.onrate}" update="messages" />
+										            <p:ajax event="cancel" listener="#{ratingView.oncancel}" update="messages" />
+										        </p:rating>
+										 
+										      
+										    </h:panelGrid>
+										 
+										 
+										
+                                      
+                                      
+                                      
+                                        <h:inputText value="#{annonceRevController.text}" id="in-comment-message"  class="form-control form__in form__in--textarea" maxlength="50"            
+												size="15"  autocomplete="off" readonly="false" required="true"              
+												requiredMessage="this field is required" style="color:red" accesskey="q">
+                                        
+                                        </h:inputText>
                                       </div>
                                     </div>
                                     <div class="row row--buttons">
                                      
-                                       <h:commandButton value="Post Comment" action="#{annonceRevController.ajouterAnnonceRev()}"   type="submit" class="form__submit" />
+                                       <h:commandButton value="Post Comment" action="#{annonceRevController.ajouterAnnonceRevOnce(annonceController.annonceReviews)}" id="btn"  type="submit" class="form__submit" />
+                                       <h:message for="btn" />
                                     </div>
                                     
                                     </h:form>
    								 </h:panelGroup>
+   								 
+   							  		
                                   </form>
                                   
 	
@@ -352,43 +423,6 @@
          
          
          
-         			
-<h:panelGroup>
-
-<h:outputText value="Bonjour #{annonceController.currentAnnonce.title} " />
-<h:outputText value="Bonjour #{userController.authenticatedUser.prenom} #{userController.authenticatedUser.nom}" />
-	
-	
-    
-    
-   <h:panelGroup columns="2"> 
-    <h:form> 
-    <h:dataTable value="#{annonceController.annonceReviews}" var="annonceReview" border="1">
-	<h:column><f:facet name="header"><h:outputText value="Login (Email)" /></f:facet> 
-	<h:outputText value="#{annonceReview.text}" /></h:column> 
-	<h:column><f:facet name="header"><h:outputText value="Login (Email)" /></f:facet> 
-	<h:outputText value="#{annonceReview.createdAt}" /></h:column> 
-	
-	<h:column><f:facet name="header"><h:outputText value="Login (Email)" /></f:facet> 
-		<h:outputText value="#{annonceRevController.countReviews(annonceController.annonceReviews)}" /></h:column> 
-	
-	
-	
-	<h:column> 
-	<f:facet name="header"><h:outputText value="Action" /></f:facet> 
-	<h:commandButton action="#{annonceRevController.deleteAnnonceReviewById(annonceReview.id)}" value="Supprimer" />
-	
-	<h:commandButton action="#{annonceRevController.displayAnnonceReview(annonceReview)}" value="Afficher" />
-
-	</h:column>
-	
-	
-	
-</h:dataTable>
-</h:form>
-</h:panelGroup>
-
-</h:panelGroup>
 
          
          

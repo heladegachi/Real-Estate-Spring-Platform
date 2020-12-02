@@ -1,0 +1,148 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+		<!-- BEGIN : TP1 JSF Introduction Login -->
+
+
+
+
+
+		<h:head>
+
+			<link href="../../resources/assets/css/vendor.css" rel="stylesheet" />
+			<link href="../../resources/assets/css/font-awesome.css"
+				rel="stylesheet" />
+			<link href="../../resources/assets/css/theme-blue-orange_red.css"
+				rel="stylesheet" />
+			<link href="../..resources/assets/css/custom.css" rel="stylesheet" />
+			<link href="../../resources/assets/css/ie-fix.css" rel="stylesheet" />
+			<link href="../../resources/assets/img/favicon.ico" rel="stylesheet" />
+			<link href="../../resources/assets/img/favicon.ico" rel="stylesheet"
+				type="image/x-icon" />
+
+		</h:head>
+
+		<center>
+			<h2>if you want to buy a house here are some informations that
+				may help you:</h2>
+			
+			 you can also visite
+			<a href="http://www.cpf.gov.tn/cpfsite/Arabe/index.php"> <img
+				src="../../image/téléchargement.png" alt="HTML tutorial"
+				style="width: 100px; height: 15opx;" />
+			</a>
+			<a href="http://www.cpf.gov.tn/cpfsite/Arabe/index.php">web site
+				of Ministry of State and Real Estate Affairs</a>
+			<h1 style="color: #D7623B;">price of the real estate with taxes
+				if it is registered</h1>
+			<form
+				oninput="x.value=parseFloat(0.06)*parseInt(b.value)+parseInt(b.value)">
+
+				+<input type="number" id="b" value="250" /> =
+				<output name="x" for="a b"></output>
+
+			</form>
+
+			<p>
+				<strong>Note:</strong> The output element is not supported in Edge
+				12 (or earlier).
+			</p>
+			<h1 style="color: #1D3A94;">taxes value if it is registered</h1>
+			<form oninput="x.value=parseFloat(0.06)*parseInt(b.value)">
+
+				+<input type="number" id="b" value="250" /> =
+				<output name="x" for="a b"></output>
+
+			</form>
+
+			<p>
+				<strong>Note:</strong> The output element is not supported in Edge
+				12 (or earlier).
+			</p>
+
+
+			<h1 style="color: #D7623B;">price of the real estate with taxes
+				if it's not registered</h1>
+			<form
+				oninput="x.value=parseFloat(0.09)*parseInt(b.value)+parseInt(b.value)">
+
+				+<input type="number" id="b" value="250" /> =
+				<output name="x" for="a b"></output>
+
+			</form>
+			
+
+			<p>
+				<strong>Note:</strong> The output element is not supported in Edge
+				12 (or earlier).
+			</p>
+			
+			
+			<h1 style="color: #1D3A94;">taxes value if it's not registered</h1>
+			<form oninput="x.value=parseFloat(0.09)*parseInt(b.value)">
+
+				+<input type="number" id="b" value="250" /> =
+				<output name="x" for="a b"></output>
+
+			</form>
+
+			<p>
+				<strong>Note:</strong> The output element is not supported in Edge
+				12 (or earlier).
+			</p>
+
+
+<H1>
+you can also verifie the state of the house enligne as shown in this video </H1>
+you will find more videos on  <a href="https://www.facebook.com/cpf.gov.tn">the facebook page</a>
+ 
+
+<br></br><br></br><br></br>
+<video width="400" controls="controls">
+  <source src="../../image/video.mp4" type="video/mp4"/>
+  </video>
+  <br></br><br></br><br></br>
+ 
+
+</center>
+
+
+
+			<br></br>
+			<br></br>
+			<br></br> 
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+
+			<script type="text/javascript"
+				src="http://maps.google.com/maps/api/js?libraries=places,drawing,geometry"></script>
+			<script type="text/javascript"
+				src="http://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+
+			<script type="text/javascript"
+				src="../../resources/assets/js/vendor.js"></script>
+
+			<script type="text/javascript"
+				src="../../resources/assets/js/demodata.js"></script>
+
+			<script type="text/javascript" src="../../resources/assets/js/app.js"></script>
+
+			<script type="text/javascript"
+				src="../../resources/assets/js/demo.js"></script>
+	</ui:define>
+</ui:composition>
+
+
+		
+
+

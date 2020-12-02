@@ -86,6 +86,13 @@ public class Reclamation {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public Reclamation(Objet objet, String description,  User user) {
+		super();
+		this.objet = objet;
+		this.description = description;
+		
+		this.user = user;
+	}
 	
 	
 	

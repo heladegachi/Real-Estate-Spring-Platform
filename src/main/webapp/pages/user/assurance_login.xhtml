@@ -1,0 +1,162 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+		<!-- BEGIN : TP1 JSF Introduction Login -->
+
+
+
+
+
+		<h:head>
+
+			<link href="../../resources/assets/css/vendor.css" rel="stylesheet" />
+			<link href="../../resources/assets/css/font-awesome.css"
+				rel="stylesheet" />
+			<link href="../../resources/assets/css/theme-blue-orange_red.css"
+				rel="stylesheet" />
+			<link href="../..resources/assets/css/custom.css" rel="stylesheet" />
+			<link href="../../resources/assets/css/ie-fix.css" rel="stylesheet" />
+			<link href="../../resources/assets/img/favicon.ico" rel="stylesheet" />
+			<link href="../../resources/assets/img/favicon.ico" rel="stylesheet"
+				type="image/x-icon" />
+
+		</h:head>
+
+
+
+
+
+
+
+
+
+
+
+		<body>
+		<div class="site-wrap js-site-wrap">
+        <!-- BEGIN BREADCRUMBS-->
+        <nav class="breadcrumbs">
+          <div class="container">
+            <ul>
+              <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">Home</a></li>
+              <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">Login</a></li>
+            </ul>
+          </div>
+        </nav>
+        <!-- END BREADCRUMBS-->
+        <div class="center">
+          <div class="container">
+            <div class="row">
+              <section class="site">
+                <header class="site__header">
+                  <h1 class="site__title">Login</h1>
+                  <h2 class="site__headline">Enter your login and password</h2>
+                </header>
+                <div class="site__main">
+                  <div class="widget js-widget widget--main widget--no-border">
+                    <div class="widget__content">
+                      <div class="auth auth--inline">
+                      
+                         
+                            
+                            
+                            
+         <div class="auth__wrap auth__wrap--login">    
+        <h:form id="form"  styleClass="login-form">
+		<h1>LogIn</h1>
+		
+			
+			<h:panelGrid >
+			  <h5 class="auth__title">Login to your account</h5>
+                   <form action="#" class="form form--flex form--auth js-login-form js-parsley">
+                       <div class="row">
+                              <div class="form-group">
+                               
+			
+								<h:outputText value="Id" class="control-label"/>
+								<h:inputText value="#{assuranceController.id}"  type="text" name="id" id="login-username-inline" data-parsley-trigger="keyup" data-parsley-minlength="6" data-parsley-validation-threshold="5" data-parsley-minlength-message="Login should be at least 6 chars" class="form-control"  />
+							</div>
+							<div class="form-group">
+			
+								<h:outputText value="Code" />
+								<h:inputSecret value="#{assuranceController.code}"  type="password" name="code" id="login-password-inline"  class="form-control" />
+							</div>
+					</div>
+					
+					      <div class="row">
+                              <div class="form__options form__options--forgot"><a href="user_restore_pass.html">Forgot password ?</a>
+                              </div>
+                              
+                              
+				<h:commandButton type="submit" class="form__submit" id="btn" value="Connexion"
+					action="#{assuranceController.doLogin()}" />
+				<h:message for="btn" />
+				
+				</div>
+				   <div class="form__remember">
+                              <input type="checkbox" id="remember-in-inline" class="in-checkbox"></input>
+                              <label for="remember-in-inline" class="in-label">Remember me</label>
+                            </div>
+                            <div class="row">
+                              <div class="form__options">Not a user yet?
+                               
+   									<h:commandLink action = "#{assuranceController.creerAbSurveillance()}" value = "Creer abonnement de surveillance"   >
+  						    		<f:param name = "pageId" value = "1" />
+   									</h:commandLink>
+   									<h:commandLink action = "#{assuranceController.afabonnement()}" value = "Afficher abonnements"   >
+  						    		<f:param name = "pageId" value = "1" />
+   									</h:commandLink>
+                      		 
+                             </div>
+                           </div>
+				</form>
+			
+			</h:panelGrid>
+		</h:form>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      
+
+      </div>
+    
+    <button type="button" class="scrollup js-scrollup"></button>
+ 
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places,drawing,geometry"></script>
+    <script type="text/javascript" src="http://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+  
+    <script type="text/javascript" src="resources/assets/js/vendor.js"></script>
+
+    <script type="text/javascript" src="resources/assets/js/demodata.js"></script>
+  
+    <script type="text/javascript" src="resources/assets/js/app.js"></script>
+ 
+    <script type="text/javascript" src="resources/assets/js/demo.js"></script>
+   
+  </body>
+
+	</ui:define>
+</ui:composition>
+   

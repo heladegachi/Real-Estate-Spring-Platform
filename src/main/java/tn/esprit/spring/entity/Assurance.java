@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +31,8 @@ public class Assurance {
 	@Column(name="Prix")
 	private Float prix;
 	@Column(name="entreprise_assurance")
-	private String entreprise;
+	@Enumerated(EnumType.STRING)
+	Entreprise entreprise;
 	@ManyToOne
 	User user;
 	public Long getId() {
@@ -62,10 +65,10 @@ public class Assurance {
 	public void setPrix(Float prix) {
 		this.prix = prix;
 	}
-	public String getEntreprise() {
+	public Entreprise getEntreprise() {
 		return entreprise;
 	}
-	public void setEntreprise(String entreprise) {
+	public void setEntreprise(Entreprise entreprise) {
 		this.entreprise = entreprise;
 	}
 	public User getUser() {
@@ -77,9 +80,18 @@ public class Assurance {
 	@Override
 	public String toString() {
 		return "Assurance [id=" + id + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", code=" + code
-				+ ", prix=" + prix + ", entreprise=" + entreprise + "]";
+				+ ", prix=" + prix + ", entreprise=" + entreprise + ", user=" + user + "]";
 	}
-	public Assurance(Long id, Date dateDebut, Date dateFin, String code, Float prix, String entreprise, User user) {
+	
+	public Assurance(Date dateDebut, Date dateFin, String code, Entreprise entreprise, User user) {
+		super();
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.code = code;
+		this.entreprise = entreprise;
+		this.user = user;
+	}
+	public Assurance(Long id, Date dateDebut, Date dateFin, String code, Float prix, Entreprise entreprise, User user) {
 		super();
 		this.id = id;
 		this.dateDebut = dateDebut;
@@ -93,5 +105,6 @@ public class Assurance {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 }

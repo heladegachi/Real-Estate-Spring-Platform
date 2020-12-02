@@ -55,80 +55,7 @@
            
  			
 			
-<h:panelGroup>
 
-			
-<h:panelGroup columns="2">
-<h:form>
-<table> 
-
-
-  <tr><td><h:outputText value="Title"></h:outputText></td> 
-  <td><h:inputText value="#{annonceController.title}"></h:inputText></td></tr>
-   <tr><td><h:outputText value="Description"></h:outputText></td>
-    <td><h:inputText value="#{annonceController.description}"></h:inputText></td></tr> 
-    <tr><td><h:outputText value="#{annonceController.createdAt}"></h:outputText></td></tr>
-<tr><td><h:outputText value="Adresse"></h:outputText></td><td><h:inputText 
-value="#{annonceController.adresse}"></h:inputText></td></tr> 
-
-    
-    <tr> 
-    <td><h:outputText value="Role"></h:outputText></td> 
-    <td><h:selectOneMenu value="#{annonceController.type}"> 
-    <f:selectItem itemLabel="Choisir le Role" itemValue="#{null}" /> 
-    <f:selectItems value="#{annonceController.states}" /> 
-    </h:selectOneMenu></td> 
-    </tr>
-    
-    
-	
-    
-    
-    
-    
-    <tr><td colspan="2"> <h:commandButton value="Ajouter Annonce" action="#{annonceController.ajouterAnnonce()}"  />   
-     
-    <h:commandButton value="Mettre A jour Annonce" action="#{annonceController.updateAnnonce()}" /> </td> </tr>
-    
-    </table>
-    </h:form>
-    </h:panelGroup>
-		  
-    
-    
-    <h:panelGroup columns="2"> 
-    <h:form> 
-    <h:dataTable value="#{annonceController.annonces}" var="annonce" border="1">
-	<h:column><f:facet name="header"><h:outputText value="Title" /></f:facet> 
-	<h:outputText value="#{annonce.title}" /></h:column> 
-	<h:column><f:facet name="header"><h:outputText value="Contract Type" /></f:facet> 
-	<h:outputText value="#{annonce.contractType}" /></h:column> 
-	<h:column><f:facet name="header"><h:outputText value="Price" /></f:facet> 
-	<h:outputText value="#{annonce.price}" /></h:column> 
-	<h:column><f:facet name="header"><h:outputText value="State Price" /></f:facet> 
-	<h:outputText value="#{annonce.statePrice}" /></h:column> 
-	<h:column><f:facet name="header"><h:outputText value="Adresse" /></f:facet> 
-	<h:outputText value="#{annonce.adresse}" /></h:column> 
-	<h:column><f:facet name="header"><h:outputText value="Country" /></f:facet> 
-	<h:outputText value="#{annonce.country}" /></h:column> 
-	<h:column><f:facet name="header"><h:outputText value="City" /></f:facet> 
-	<h:outputText value="#{annonce.city}" /></h:column> 
-	
-	<h:column> 
-	<f:facet name="header"><h:outputText value="Action" /></f:facet> 
-	<h:commandButton action="#{annonceController.removeAnnonce(annonce.id)}" value="Supprimer" />
-	
-	<h:commandButton action="#{annonceController.displayAnnonce(annonce)}" value="Afficher" />
-
-	</h:column>
-	
-	
-	
-</h:dataTable>
-</h:form>
-</h:panelGroup>
-
-</h:panelGroup>
 
  
            
@@ -158,10 +85,10 @@ value="#{annonceController.adresse}"></h:inputText></td></tr>
             <div class="row">
               <div class="site site--main">
                 <header class="site__header">
-                  <h1 class="site__title">Add or edit listing</h1>
-                  <h2 class="site__headline">Add and edit listing information</h2>
+                  <h1 class="site__title">Add listing</h1>
+                  <h2 class="site__headline">Add listing information</h2>
                 </header>
-                <div class="site__panel"><span class="site__header-text">Flexible configuration and editing forms, add and edit listing information, photos and location of the position</span></div>
+                <div class="site__panel"><span class="site__header-text">Flexible configuration and editing forms, add listing information, photos and location of the position</span></div>
                 <div class="site__main">
                   <form class="form form--flex form--property-add js-form js-form-property">
                   
@@ -228,7 +155,7 @@ value="#{annonceController.adresse}"></h:inputText></td></tr>
                           </div>
                           <div class="form-group">
                            
-							<h:outputText value="Price"></h:outputText>
+							<h:outputText value="Price (Dollar $)"></h:outputText>
  							<h:inputText value="#{annonceController.price}" class="form-control"  required="true" requiredMessage="Price Mendatory" ></h:inputText>
  							 
                           </div>
@@ -282,42 +209,19 @@ value="#{annonceController.adresse}"></h:inputText></td></tr>
                     <div class="widget js-widget widget--main widget--no-margin widget--no-border widget--collapse">
                       <div class="widget__header">
                         <h2 class="widget__title">Location</h2>
-                        <h5 class="widget__headline">Google Maps is a desktop and mobile web mapping service application and technology provided by Google.</h5>
+                        <h5 class="widget__headline">Mark the approximate location of your property</h5>
+                        <a target="_blank" href="https://www.google.tn/maps/@34.6113892,8.7590835,6z?hl=fr" class="widget__headline">Find it on Google Maps</a>
                       </div>
-                      <div class="widget__content">
-                        <div class="map map--location map--dashboard map--submit js-map-location-dashboard-submit">
-                          <div class="map__header">
-                            <button type="button" class="btn--link js-remove-overlays">Delete selected shape</button>
+                      <div class="form-group">
+                            
+                             <h:outputText value="Map Latitude" class="control-label"></h:outputText> 
+ 							<h:inputText value="#{annonceController.lat}" class="form-control"></h:inputText>
+                             
                           </div>
-                          <div class="map__block">
-                            <div class="row map__autocomplete">
-                              <div class="form-group form-group--autocomplete">
-                                <label for="autocomplete-dashboard submit" class="control-label">GPS Mapping</label>
-                                <input type="text"  class="form-control js-autocomplete"></input>
-                              </div>
-                              <button type="button" class="map__geolocation js-geolocate">
-                                
-                              </button>
-                            </div>
-                            <div class="map__buttons">
-                              <button type="button" class="map__change-map js-map-btn">Address Map</button>
-                            </div>
-                            <div class="map__wrap">
-                              <div data-infobox-theme="white" class="map__view map__view--property-form js-map"></div>
-                            </div>
+                          <div class="form-group">
+                             <h:outputText value="Map Longitude" class="control-label"></h:outputText> 
+ 							<h:inputText value="#{annonceController.lng}" class="form-control"></h:inputText>
                           </div>
-                          <div class="row">
-                            <div class="form-group form-group--coords">
-                              <label for="location-lat-dashboard submit" class="control-label">Lat</label>
-                              <input type="text" placeholder="" id="location-lat-dashboard submit" class="form-control js-location-coords"/>
-                            </div>
-                            <div class="form-group form-group--coords">
-                              <label for="location-lng-dashboard submit" class="control-label">Lng</label>
-                              <input type="text" placeholder="" id="location-lng-dashboard submit" class="form-control js-location-coords"/>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                     
                     

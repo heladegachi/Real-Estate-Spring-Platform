@@ -267,18 +267,7 @@ public class UserController  {
 	public String gotoLogin(){
 		return "/login.xhtml?faces-redirect=true";
 	}
-	public String gotoUserProfile(){
-		return "/pages/user/UserProfile.xhtml?faces-redirect=true";
-	}
-	public String gotoRent(){
-		return "/pages/user/salsabil.xhtml?faces-redirect=true";
-	}
-	public String gotoBuy(){
-		return "/pages/user/eya.xhtml?faces-redirect=true";
-	}
-	public String gotoSubscribe(){
-		return "/pages/user/amir.xhtml?faces-redirect=true";
-	}
+
 	public String gotoMeuble(){
 		return "/pages/user/oumema.xhtml?faces-redirect=true";
 	}
@@ -298,6 +287,54 @@ public class UserController  {
 	
 	public String gotoAnnonceDetail(){
 		return "/pages/user/AnnonceDetails.xhtml?faces-redirect=true";
+	}
+	
+	public String gotopagelog(){
+		return "/login.xhtml?faces-redirect=true";
+	}
+	public String gotoLog(){
+		return "/pages/user/UserProfile.xhtml?faces-redirect=true";
+	}
+	public String gotoUserProfile(){
+		return "/pages/user/UserProfile.xhtml?faces-redirect=true";
+	}
+	public String gotoRent(){
+		return "/pages/user/eya.xhtml?faces-redirect=true";
+	}
+	public String gotoBuy(){
+		return "/pages/user/salsabil.xhtml?faces-redirect=true";
+	}
+	public String viewPurchases(){
+		return "/pages/user/mesachatsprevu.xhtml?faces-redirect=true";
+	}
+	public String gotoSubscribe(){
+		return "/pages/user/Logsubs.xhtml?faces-redirect=true";
+	}
+	public String gotoPublication(){
+		return "/pages/user/publicab_login.xhtml?faces-redirect=true";
+	}
+	public String gotoSurveillance(){
+		return "/pages/user/surveillancelog.xhtml?faces-redirect=true";
+	}
+
+	
+	public String creerCompte(){
+		return "/pages/user/user_register.xhtml?faces-redirect=true";
+	}
+	public String gotoReclamation(){
+		return "/pages/user/reclamation.xhtml?faces-redirect=true";
+	}
+	public String gotoFiche(){
+		return "/pages/user/fiche.xhtml?faces-redirect=true";
+	}
+	public String gotoAff(){
+		return "/pages/user/table.xhtml?faces-redirect=true";
+	}
+	public String gotoLogassurance(){
+		return "/pages/user/assurance_login.xhtml?faces-redirect=true";
+	}
+	public String gotoStatistique(){
+		return "/pages/admin/bar.xhtml?faces-redirect=true";
 	}
 	
 	

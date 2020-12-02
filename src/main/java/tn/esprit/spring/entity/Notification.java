@@ -20,7 +20,7 @@ public class Notification {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column
-	private Integer notificationId;
+	private long notificationId;
 	@Column
 	private String message;
 	@Column
@@ -53,11 +53,11 @@ public class Notification {
 		this.isRead = false;
 }
 
-	public Integer getNotificationId() {
+	public long getNotificationId() {
 		return notificationId;
 	}
 
-	public void setNotificationId(Integer notificationId) {
+	public void setNotificationId(long notificationId) {
 		this.notificationId = notificationId;
 	}
 
@@ -101,6 +101,7 @@ public class Notification {
 		this.user = user;
 	}
 
+	
 	public Notification(Integer notificationId, String message, Date createdAt, Action action,
 			boolean isRead, User user) {
 		super();

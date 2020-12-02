@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+		<!-- BEGIN : TP1 JSF Introduction Login -->
+
+
+
+
+
+		<h:head>
+
+			<link href="../../resources/assets/css/vendor.css" rel="stylesheet" />
+			<link href="../../resources/assets/css/font-awesome.css"
+				rel="stylesheet" />
+			<link href="../../resources/assets/css/theme-blue-orange_red.css"
+				rel="stylesheet" />
+			<link href="../..resources/assets/css/custom.css" rel="stylesheet" />
+			<link href="../../resources/assets/css/ie-fix.css" rel="stylesheet" />
+			<link href="../../resources/assets/img/favicon.ico" rel="stylesheet" />
+			<link href="../../resources/assets/img/favicon.ico" rel="stylesheet"
+				type="image/x-icon" />
+
+		</h:head>
+
+
+
+
+
+
+
+
+
+
+
+		<body>
+		
+		<BR /><BR />
+		<center>
+		<h:graphicImage value="../../images/art.jpg" />
+		<BR /><BR />
+		<h:panelGroup columns="2"><h:form><table>
+			<tr><td><h:outputText value="Validation code"></h:outputText></td><td>
+			<h:inputText value="#{subscriptController.code}"></h:inputText></td></tr>
+			
+			<tr><td><h:outputText value="Start date"></h:outputText></td><td>
+			<p:datePicker id="button"
+								value="#{subscriptController.datedeb}" showIcon="true" /></td></tr>
+			<tr><td><h:outputText value="End date"></h:outputText></td><td>
+			<p:datePicker id="button1"
+								value="#{subscriptController.datefin}" showIcon="true" /></td></tr>
+			
+			
+			<tr><td colspan="2"><h:commandButton type="submit" class="form__submit" value="Add Subscription" action="#{subscriptController.addSubscription()}" /></td>
+			<td colspan="2"><h:commandButton type="submit" class="form__submit" value="calculate the price" action="#{subscriptController.modifyPrix()}" /></td></tr>
+		</table></h:form></h:panelGroup>
+		</center>
+		<BR /><BR />
+		 </body>
+
+	</ui:define>
+</ui:composition>
+   

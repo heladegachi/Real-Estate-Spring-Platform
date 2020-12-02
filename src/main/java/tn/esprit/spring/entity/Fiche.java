@@ -2,6 +2,8 @@ package tn.esprit.spring.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +20,8 @@ public class Fiche {
 	@Column(name="Question1")
 	private Boolean question1;
 	@Column(name="Question2")
-	private String question2;
+	@Enumerated(EnumType.STRING)
+	Question2 question2;
 	@Column(name="Question3")
 	private String question3;
 	@Column(name="Question4")
@@ -31,14 +34,6 @@ public class Fiche {
 	private String question7;
 	@Column(name="Question8")
 	private String question8;
-	@Column(name="Question9")
-	private String question9;
-	@Column(name="Question10")
-	private String question10;
-	@Column(name="Question11")
-	private String question11;
-	@Column(name="Question12")
-	private String question12;
 	@Column(name="Proposition")
 	private String proposition;
 	@ManyToOne
@@ -55,11 +50,12 @@ public class Fiche {
 	public void setQuestion1(Boolean question1) {
 		this.question1 = question1;
 	}
-	public String getQuestion2() {
+	
+	public Question2 getQuetion2() {
 		return question2;
 	}
-	public void setQuestion2(String question2) {
-		this.question2 = question2;
+	public void setQuetion2(Question2 quetion2) {
+		this.question2 = quetion2;
 	}
 	public String getQuestion3() {
 		return question3;
@@ -97,30 +93,7 @@ public class Fiche {
 	public void setQuestion8(String question8) {
 		this.question8 = question8;
 	}
-	public String getQuestion9() {
-		return question9;
-	}
-	public void setQuestion9(String question9) {
-		this.question9 = question9;
-	}
-	public String getQuestion10() {
-		return question10;
-	}
-	public void setQuestion10(String question10) {
-		this.question10 = question10;
-	}
-	public String getQuestion11() {
-		return question11;
-	}
-	public void setQuestion11(String question11) {
-		this.question11 = question11;
-	}
-	public String getQuestion12() {
-		return question12;
-	}
-	public void setQuestion12(String question12) {
-		this.question12 = question12;
-	}
+	
 	public String getProposition() {
 		return proposition;
 	}
@@ -133,19 +106,11 @@ public class Fiche {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	@Override
-	public String toString() {
-		return "Fiche [id=" + id + ", question1=" + question1 + ", question2=" + question2 + ", question3=" + question3
-				+ ", question4=" + question4 + ", question5=" + question5 + ", question6=" + question6 + ", question7="
-				+ question7 + ", question8=" + question8 + ", question9=" + question9 + ", question10=" + question10
-				+ ", question11=" + question11 + ", question12=" + question12 + ", proposition=" + proposition
-				+ ", user=" + user + "]";
-	}
-	public Fiche(Long id, Boolean question1, String question2, String question3, String question4, String question5,
-			String question6, String question7, String question8, String question9, String question10,
-			String question11, String question12, String proposition, User user) {
+	
+	public Fiche( Boolean question1, Question2 question2, String question3, String question4, String question5,
+			String question6, String question7, String question8, String proposition, User user) {
 		super();
-		this.id = id;
+		
 		this.question1 = question1;
 		this.question2 = question2;
 		this.question3 = question3;
@@ -154,13 +119,20 @@ public class Fiche {
 		this.question6 = question6;
 		this.question7 = question7;
 		this.question8 = question8;
-		this.question9 = question9;
-		this.question10 = question10;
-		this.question11 = question11;
-		this.question12 = question12;
 		this.proposition = proposition;
 		this.user = user;
 	}
+	@Override
+	public String toString() {
+		return "Fiche [id=" + id + ", question1=" + question1 + ", question2=" + question2 + ", question3=" + question3
+				+ ", question4=" + question4 + ", question5=" + question5 + ", question6=" + question6 + ", question7="
+				+ question7 + ", question8=" + question8 + ", proposition=" + proposition + ", user=" + user + "]";
+	}
+	public Fiche() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	
 }

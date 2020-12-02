@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -79,13 +81,23 @@ public class Surveillance {
 		return "Surveillance [id=" + id + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", code=" + code
 				+ ", prix=" + prix + ", camera=" + camera + "]";
 	}
-	public Surveillance(Long id, Date dateDebut, Date dateFin, String code, Float prix, Long camera, User user) {
+	
+	public Surveillance(Date dateDebut, Date dateFin, String code, Float prix, Long camera, User user) {
 		super();
-		this.id = id;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.code = code;
 		this.prix = prix;
+		this.camera = camera;
+		this.user = user;
+	}
+	public Surveillance( Date dateDebut, Date dateFin, String code,  Long camera, User user) {
+		super();
+		
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.code = code;
+		
 		this.camera = camera;
 		this.user = user;
 	}

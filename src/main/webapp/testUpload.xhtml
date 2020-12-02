@@ -1,26 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-<title>#{page_name}</title>
-</h:head>
-<body>
-	<h:panelGrid columns="3" cellpadding="5">
-				
-				
-				
- 
-						
-						<h:form enctype="multipart/form-data">        
-						    <p:fileUpload value="#{fileUploadController.file}" mode="simple" skinSimple="true"/>
-						    <br />
-						    <p:commandButton value="Submit"  action="#{fileUploadController.upload}" />
-						</h:form>
-			</h:panelGrid>
-</body>
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+	
+    <h:head>
+        <title>File upload page</title>
+        <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+	  
+    </h:head>
+    <h:body>
+    	
+    	<h:form enctype="multipart/form-data"  prependId="false" id="upload-form">
+    	    <h:message style="color:yellow;" /> 
+     	   <table  width="750px;" align="center">
+    	   	<tr><td colspan="2"><h2><h:outputText value ="h:inputFile"></h:outputText></h2></td></tr>
+	    	
+	    		<tr> <td colspan="2"></td> </tr>	   
+	    	   	<tr>
+	    	   			
+	    	   			<td>  
+	    	   			 <h:inputFile  id="file-id"  
+	    	   			       value="#{fileUploadController.uploadedFile}" 
+	    	   			       required="true"   
+                               requiredMessage="Please upload a file" 
+                               alt="upload file"
+                               style="font-size: 30px;">
+                         </h:inputFile>  
+	    	   			
+	    	   			</td>
+	    	   			
+	    	   			<td>
+	    	   				<h:message for="file-id" style="color:white;" />
+	    	   			</td>
+	    	   	</tr>
+	    	   	
+	    	   	
+	    	     <tr>
+	    	        <td colspan="2">
+	    	        	<h:commandButton value="Upload file" 
+	    	        	 type="submit"
+	    	        	 action="#{fileUploadController.saveFile}"
+	    	        	 style="color: red;font-size: 30px;"></h:commandButton>
+					</td>
+	    	     
+	    	     </tr> 	   	
+	    	   	
+    	   </table>
+    	
+    	    
+    	  
+    	</h:form>
+    </h:body>
 </html>

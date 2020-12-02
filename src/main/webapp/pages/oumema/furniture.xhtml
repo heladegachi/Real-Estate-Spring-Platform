@@ -1,0 +1,289 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/templatenude.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+		<!-- BEGIN : TP1 JSF Introduction Login -->
+
+
+
+
+
+		<h:head>
+
+
+			<link href="../../resources/assets/css/vendor.css" rel="stylesheet" />
+			<link href="../../resources/assets/css/font-awesome.css"
+				rel="stylesheet" />
+			<link href="../../resources/assets/css/theme-blue-orange_red.css"
+				rel="stylesheet" />
+			<link href="../..resources/assets/css/custom.css" rel="stylesheet" />
+			<link href="../../resources/assets/css/ie-fix.css" rel="stylesheet" />
+			<link href="../../resources/assets/img/favicon.ico" rel="stylesheet" />
+			<link href="../../resources/assets/img/favicon.ico" rel="stylesheet"
+				type="image/x-icon" />
+
+		</h:head>
+
+
+
+
+
+
+
+
+
+
+
+		<h:body>
+
+
+
+
+			<div class="box js-box">
+
+				<h:panelGroup
+					rendered="#{not empty userController.authenticatedUser.id}">
+					<ui:include src="/template/navbar.xhtml" />
+				</h:panelGroup>
+				<h:panelGroup
+					rendered="#{empty userController.authenticatedUser.id}">
+
+					<ui:include src="/template/navbarUnknown.xhtml" />
+
+				</h:panelGroup>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<h:panelGroup>
+
+
+					<div class="site-wrap js-site-wrap">
+						<!-- BEGIN BREADCRUMBS-->
+						<nav class="breadcrumbs">
+							<div class="container">
+								<ul>
+									<li class="breadcrumbs__item"><a href="welcomeUser2.jsf"
+										class="breadcrumbs__link">Home</a></li>
+
+									<li class="breadcrumbs__item"><a href="FunitureAdd.jsf"
+										class="breadcrumbs__link">Add Furniture</a></li>
+								</ul>
+							</div>
+						</nav>
+						<!-- END BREADCRUMBS-->
+						<div class="center">
+							<div class="container">
+								<div class="row">
+									<div class="site site--main">
+										<header class="site__header">
+											<h1 class="site__title">Add Furniture To Buy</h1>
+											<h2 class="site__headline">Add Funiture information</h2>
+										</header>
+										<div class="site__panel">
+											<span class="site__header-text">Flexible configuration
+												and editing forms, add listing information and photos </span>
+										</div>
+										<div class="site__main">
+											<form
+												class="form form--flex form--property-add js-form js-form-property">
+
+												<h:panelGroup>
+													<h:form>
+
+														<div
+															class="widget js-widget widget--main widget--no-margin widget--no-border widget--collapse">
+															<div class="widget__header">
+																<h2 class="widget__title">Basic information</h2>
+																<h5 class="widget__headline">You should fill all
+																	this fields.</h5>
+															</div>
+														</div>
+
+														<div class="widget__content">
+															<div class="row">
+
+																<div class="form-group">
+
+
+																	<h:outputText value="Title"></h:outputText>
+																	<h:inputText value="#{furnitureController.name}"
+																		class="form-control" required="true"
+																		requiredMessage="Title Mendatory"></h:inputText>
+
+
+																</div>
+																<div class="form-group">
+
+
+																	<h:outputText value="Price"></h:outputText>
+																	<h:inputText value="#{furnitureController.price}"
+																		class="form-control" required="true"
+																		requiredMessage="Title Mendatory"></h:inputText>
+
+
+																</div>
+									
+
+
+
+																<div class="form-group">
+
+
+																	<h:outputText value="Quantity"></h:outputText>
+																	<h:inputText value="#{furnitureController.quantity}"
+																		class="form-control"></h:inputText>
+
+
+																</div>
+
+
+                                                              <div class="form-group">
+
+
+																	<h:outputText value="Description"></h:outputText>
+																	<h:inputText value="#{furnitureController.description}"
+																		class="form-control"></h:inputText>
+
+
+																</div>
+                                                              
+
+																
+
+
+
+
+
+																<h5 class="form-property__condition">If you have
+																	filled in all the fields and are confident of the
+																	correctness of all information, click on the button
+																	below to save data</h5>
+																<div class="row">
+
+
+																	<h:commandButton value="Add Funiture"
+																		action="#{furnitureController.ajouterPicture()}"
+																		class="form__submit" />
+
+																</div></div></div>
+													</h:form>
+												</h:panelGroup>
+											</form>
+										</div>
+									</div>
+
+
+
+
+
+									<div class="sidebar">
+
+
+
+										<div class="widget js-widget widget--sidebar widget--dark">
+											<div class="widget__header">
+												<h2 class="widget__title">Popular estate</h2>
+												<h5 class="widget__headline">Find your furniture or
+													house on the exact key parameters.</h5>
+												<a class="widget__btn js-widget-btn widget__btn--toggle">Show
+													properties</a>
+											</div>
+											<div class="widget__content">
+												<div class="listing listing--sidebar">
+
+													<ui:repeat value="#{furnitureController.furnitures}"
+														var="furniture">
+
+														<div class="listing__item">
+															<div class="properties properties--sidebar">
+																<div class="properties__thumb">
+																	<a class="item-photo item-photo--static"><img
+																		src="../../ressources/assets/media-demo/properties/554x360/02.jpg"
+																		alt="" /> <span class="item-photo__more">View
+																			Details <h:commandLink
+																				action="#{userController.gotoHomepageUser()}"
+																				value="#{furniture.name}"></h:commandLink>
+																	</span> </a>
+																</div>
+																<!-- end of block .properties__thumb-->
+																<div class="properties__details">
+																	<h:form>
+																		<br></br>
+																		<h:commandLink
+																			action="#{userController.gotoHomepageUser()}"
+																			value="#{annonce.title}">
+
+
+																		</h:commandLink>
+																	</h:form>
+
+																</div>
+																<!-- end of block .properties__info-->
+															</div>
+															<!-- end of block .properties__item-->
+														</div>
+													</ui:repeat>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+
+
+						<ui:include src="/template/footer.xhtml" />
+					</div>
+
+				</h:panelGroup>
+
+
+			</div>
+
+
+
+
+			<script type="text/javascript"
+				src="http://maps.google.com/maps/api/js?libraries=places,drawing,geometry"></script>
+			<script type="text/javascript"
+				src="http://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+
+			<script type="text/javascript"
+				src="../../resources/assets/js/vendor.js"></script>
+
+			<script type="text/javascript"
+				src="../../resources/assets/js/demodata.js"></script>
+
+			<script type="text/javascript" src="../../resources/assets/js/app.js"></script>
+
+			<script type="text/javascript"
+				src="../../resources/assets/js/demo.js"></script>
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>
+
+
+

@@ -29,7 +29,7 @@
       <!-- BEGIN HEADER-->
       <header class="header header--brand">
         <div class="container">
-          <div class="header__row"><a href="index.html" class="header__logo">
+          <div class="header__row"><a href="../user/welcomeUser2.jsf" class="header__logo">
               <svg>
                 <use href="#icon-logo--mob"></use>
               </svg></a>
@@ -45,7 +45,7 @@
 							</h:panelGroup>
 							<h:panelGroup rendered="#{ annonceController.changecurr}">
 							  
-							         Euro
+							         TND
 							
 							</h:panelGroup>
 							
@@ -57,7 +57,7 @@
 							<h:form>
 				   	  <li class="dropdown__item"> 
 				   	  
-   							<h:commandLink action = "#{annonceController.changeCurrency()}" value = "Euro"  class="dropdown__link">
+   							<h:commandLink action = "#{annonceController.changeCurrency()}" value = "DinarT"  class="dropdown__link">
    									   	  
    
   						    	<f:param name = "pageId"  value = "1" />
@@ -95,6 +95,11 @@
                   </div>
                 </div>
               </div>
+              
+               <div class="header__social">
+               <div class="social social--header social--circles"><a href="https://www.facebook.com/Daritn-109381357473919/?modal=admin_todo_tour" class="social__item"><i class="fa fa-facebook"></i></a><a href="https://www.instagram.com/daritn619/" class="social__item"><i class="fa fa-instagram"></i></a><a href="https://www.youtube.com/channel/UCO0NwlOOpREte7sn9JnGs_Q/?guided_help_flow=5" class="social__item"><i class="fa fa-youtube"></i></a></div>
+            </div>
+            
             </div>
          
            
@@ -105,17 +110,19 @@
                   <div class="dropdown__menu auth__dropdown--logged-in js-user-logged-in">
                     <nav class="nav nav--auth">
                       <ul class="nav__list">
-                        
-                       <h:panelGrid >
+                        <li class="nav__item"><a href="../user/AnnonceUserListing.jsf" class="nav__link">
+                            <svg class="nav__icon">
+                              <use href="#icon-favorite-listings"></use>
+                            </svg>My listings</a>
+                          </li>
                        
-                        <h:commandButton type="submit" class="nav__item" id="btn" value="Déconnexion"
-					action="#{userController.doLogout()}" />
-					</h:panelGrid>
-					 <h:form>
-   							<h:commandLink type="submit" class="nav__item" action ="#{userController.doLogout()}" value = "Disconnect"  >
-  						    	<f:param name = "pageId" value = "1" />
-   							</h:commandLink>
-                       </h:form>
+						 <li>
+						 	<h:form>
+	   							<h:commandLink type="submit" class="nav__item" action ="#{userController.doLogout()}" value = "Disconnect"  >
+	  						    	<f:param name = "pageId" value = "1" />
+	   							</h:commandLink>
+	                       </h:form>
+	                       </li>
 					
                       </ul>
                     </nav>
@@ -141,7 +148,7 @@
       <div id="header-nav-offset"></div>
       <nav id="header-nav" class="navbar navbar--header">
         <div class="container">
-          <div class="navbar__row js-navbar-row"><a href="index.html" class="navbar__brand">
+          <div class="navbar__row js-navbar-row"><a href="../user/welcomeUser2.jsf" class="navbar__brand">
               <img src="../../resources/assets/smalllogo.png" alt=""></img></a>
             <div id="navbar-collapse-1" class="navbar__wrap">
               <ul class="navbar__nav">
@@ -159,7 +166,7 @@
                       <ul class="navbar__subnav">
                         
                        <h:form>
-   							<h:commandLink action = "#{userController.gotoHomepageUser()}" value = "Page1"  class="navbar__sublink js-navbar-sublink">
+   							<h:commandLink action = "#{userController.gotoHomepageUser()}" value = "HomePage"  class="navbar__sublink js-navbar-sublink">
   						    	<f:param name = "pageId" value = "1" />
    							</h:commandLink>
                        </h:form>
@@ -195,11 +202,7 @@
    							</h:commandLink>
                        </h:form>
                        
-                       <h:form>
-   							<h:commandLink action = "#{userController.gotoAnnonceDetail()}" value = "Ad detail"  class="navbar__sublink js-navbar-sublink">
-  						    	<f:param name = "pageId" value = "1" />
-   							</h:commandLink>
-                       </h:form>
+                      
 					
 					 </ul>
                     </div>
@@ -208,7 +211,7 @@
                     </div>
                   </div>
                 </li>
-                <li class="navbar__item js-dropdown"><a class="navbar__link">Agents
+                <li class="navbar__item js-dropdown"><a class="navbar__link">Subscriptions
                     <svg class="navbar__arrow">
                       <use href="#icon-arrow-right"></use>
                     </svg></a>
@@ -221,13 +224,30 @@
                     <div class="navbar__submenu">
                       <ul class="navbar__subnav">
                       
-                      <h:form>
-   							<h:commandLink action = "#{userController.gotoLogin()}" value = "test"  class="navbar__sublink js-navbar-sublink">
+                       <h:form>
+   							<h:commandLink action = "#{userController.gotoSurveillance()}" value = "Monitoring subscription"  class="navbar__sublink js-navbar-sublink">
+  						    	<f:param name = "pageId" value = "1" />
+   							</h:commandLink>
+                       </h:form> 
+                        <h:form>
+   							<h:commandLink action = "#{userController.gotoPublication()}" value = "Publication subscription"  class="navbar__sublink js-navbar-sublink">
+  						    	<f:param name = "pageId" value = "1" />
+   							</h:commandLink>
+                       </h:form> 
+                       <h:form>
+   							<h:commandLink action = "#{userController.gotoSubscribe()}" value = "Insurance subscription"  class="navbar__sublink js-navbar-sublink">
   						    	<f:param name = "pageId" value = "1" />
    							</h:commandLink>
                        </h:form>
+                       
                        <h:form>
-   							<h:commandLink action = "#{userController.gotoUserProfile()}" value = "UserProfile"  class="navbar__sublink js-navbar-sublink">
+   							<h:commandLink action = "#{userController.gotoFiche()}" value = "Satisfaction Sheet"  class="navbar__sublink js-navbar-sublink">
+  						    	<f:param name = "pageId" value = "1" />
+   							</h:commandLink>
+                       </h:form> 
+                       
+                       <h:form>
+   							<h:commandLink action = "#{userController.gotoReclamation()}" value = "Claim"  class="navbar__sublink js-navbar-sublink">
   						    	<f:param name = "pageId" value = "1" />
    							</h:commandLink>
                        </h:form> 
@@ -238,7 +258,7 @@
                     </div>
                   </div>
                 </li>
-                <li class="navbar__item js-dropdown active"><a class="navbar__link">User
+                <li class="navbar__item js-dropdown active"><a class="navbar__link">Purchases
                     <svg class="navbar__arrow">
                       <use href="#icon-arrow-right"></use>
                     </svg></a>
@@ -250,18 +270,19 @@
                     </button>
                     <div class="navbar__submenu">
                      
-                       <h:form>
-   							<h:commandLink action = "#{userController.gotoRent()}" value = "Test salsabil"  class="navbar__sublink js-navbar-sublink">
-  						    	<f:param name = "pageId" value = "1" />
-   							</h:commandLink>
-                       </h:form> 
+                      <ul class="navbar__subnav">
+                        <li class="navbar__subitem"><a href="../user/salsabil.jsf" class="navbar__sublink js-navbar-sublink" >My purchases</a></li>
+							<li class="navbar__subitem"><a href="../user/calcul.jsf" class="navbar__sublink js-navbar-sublink">Calculate Tax</a></li>
+					  </ul>
+                     
+                      
                    </div>
                    
                    
                    
                   </div>
                 </li>
-                <li class="navbar__item js-dropdown"><a class="navbar__link">Blog
+                <li class="navbar__item js-dropdown"><a class="navbar__link">Visit
                     <svg class="navbar__arrow">
                       <use href="#icon-arrow-right"></use>
                     </svg></a>
@@ -271,19 +292,28 @@
                         <use href="#icon-arrow-left"></use>
                       </svg>Back
                     </button>
-                    <div class="navbar__submenu">
+                    
+						 <div class="navbar__submenu">
+                    	
+                      <h5 class="navbar__subtitle">Client</h5>
                       <ul class="navbar__subnav">
-                       
-
-						 <h:form>
-   							<h:commandLink action = "#{userController.gotoBuy()}" value = "Test Eya"  class="navbar__sublink js-navbar-sublink">
-  						    	<f:param name = "pageId" value = "1" />
-   							</h:commandLink>
-                       </h:form> 
-                       
-                       </ul>
+                        <li class="navbar__subitem"><a href="../user/VisiteReelleClient.jsf" class="navbar__sublink js-navbar-sublink" >Add Appointment</a></li>
+							<li class="navbar__subitem"><a href="../user/VirtuelleClient.jsf" class="navbar__sublink js-navbar-sublink">Virtual Tours</a></li>
+						</ul>
                     </div>
-                  </div>
+                    <div class="navbar__submenu">
+                    
+                      <h5 class="navbar__subtitle">Landlord</h5>
+                      <ul class="navbar__subnav">
+                        <li class="navbar__subitem"><a href="../user/VisiteReelleVendeurça.jsf" class="navbar__sublink js-navbar-sublink" >Appointment</a></li>
+							<li class="navbar__subitem"><a href="../user/VirtuelleVendeur.jsf" class="navbar__sublink js-navbar-sublink">Upload</a></li>
+					  </ul>
+                    </div>
+						 
+                       
+                      
+                    </div>
+                  
                 </li>
                 <li class="navbar__item js-dropdown"><a class="navbar__link">Pages
                     <svg class="navbar__arrow">
@@ -302,11 +332,6 @@
                        
                        
                         
-                       <h:form>
-   							<h:commandLink action = "#{userController.gotoSubscribe()}" value = "Test Amir"  class="navbar__sublink js-navbar-sublink">
-  						    	<f:param name = "pageId" value = "1" />
-   							</h:commandLink>
-                       </h:form> 
                        
                        
                     </ul>   
@@ -342,7 +367,8 @@
                   </li>
                   
                   
-                  
+           <h:panelGroup rendered="#{userController.authenticatedUser.type eq 'Admin' }">
+			  
                   
                 <li class="navbar__item js-dropdown"><a class="navbar__link">Dashboard
                 <svg class="navbar__arrow">
@@ -355,11 +381,9 @@
                       <ul class="navbar__subnav">
                      
                      
-                      <h:form>
-   							<h:commandLink action = "#{userController.gotoVirtualVisit()}" value = "Test Chaima"  class="navbar__sublink js-navbar-sublink">
-  						    	<f:param name = "pageId" value = "1" />
-   							</h:commandLink>
-                       </h:form> 
+                      <li class="navbar__subitem"><a href="../admin/AnnonceManagement.jsf" class="navbar__sublink">Dashboard</a></li>
+                      <li class="navbar__subitem"><a href="../admin/welcome.jsf" class="navbar__sublink">Activity Log</a></li>
+                      <li class="navbar__subitem"><a href="dashboard.html" class="navbar__sublink">Statistics</a></li>
                      
                      
                      
@@ -368,7 +392,7 @@
                   </div>
                 </li>
                 
-                
+               </h:panelGroup> 
                 
                 <li class="navbar__item navbar__item--mob js-dropdown"><a class="navbar__link">Language
                     <svg class="navbar__arrow">

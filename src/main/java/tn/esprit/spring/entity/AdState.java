@@ -1,5 +1,5 @@
 package tn.esprit.spring.entity;
 
 public enum AdState {
-	Accepted, Denied, InReview
+	Accepted, Denied, InReview, Paid
 }

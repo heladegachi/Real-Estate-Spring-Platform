@@ -1,0 +1,97 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+		<!-- BEGIN : TP1 JSF Introduction Login -->
+
+
+
+
+
+		<h:head>
+
+			<link href="../../resources/assets/css/vendor.css" rel="stylesheet" />
+			<link href="../../resources/assets/css/font-awesome.css"
+				rel="stylesheet" />
+			<link href="../../resources/assets/css/theme-blue-orange_red.css"
+				rel="stylesheet" />
+			<link href="../..resources/assets/css/custom.css" rel="stylesheet" />
+			<link href="../../resources/assets/css/ie-fix.css" rel="stylesheet" />
+			<link href="../../resources/assets/img/favicon.ico" rel="stylesheet" />
+			<link href="../../resources/assets/img/favicon.ico" rel="stylesheet"
+				type="image/x-icon" />
+
+		</h:head>
+
+
+
+
+
+
+
+
+
+
+
+		<body>
+		<BR /><BR />
+		<tr>
+		<h:graphicImage value="../../images/a.jpg" />
+		<h:graphicImage value="../../images/téléchargement.jpg" />
+		<h:graphicImage value="../../images/r.jpg" />
+		<h:graphicImage value="../../images/z.png" />
+		</tr>
+		<BR /><BR />
+		<center>
+			<h:panelGroup columns="2">
+				<h:form>
+					<table>
+						<tr>
+							<td><h:outputText value="Validation code"></h:outputText></td>
+							<td><h:inputText value="#{assuranceController.code}"></h:inputText></td>
+						</tr>
+
+						<tr>
+							<td><h:outputText value="Start date"></h:outputText></td>
+							<td><p:datePicker id="button"
+									value="#{assuranceController.datedeb}" showIcon="true" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="End date"></h:outputText></td>
+							<td><p:datePicker id="button1"
+									value="#{assuranceController.datefin}" showIcon="true" /></td>
+						</tr>
+
+						<tr>
+							<td><h:outputText value="Company"></h:outputText></td>
+							<td><h:selectOneMenu value="#{assuranceController.entreprise}">
+									<f:selectItem itemLabel ="" itemValue="#{null}" />
+									<f:selectItems value ="#{assuranceController.entreprises}" />
+									</h:selectOneMenu></td>
+						</tr>
+						<tr>
+							<td colspan="2"><h:commandButton type="submit"
+									class="form__submit" value="Add Subscription"
+									action="#{assuranceController.addAssurance()}" /></td>
+						<td colspan="2"><h:commandButton type="submit" class="form__submit" value="Calculer prix" action="#{assuranceController.modifyPrix()}" /></td></tr>
+					</table>
+				</h:form>
+			</h:panelGroup>
+			<h:form>
+			<h:commandLink action = "#{assuranceController.gotoFiche()}" value = "Advertising Insurance"   >
+  						    		<f:param name = "pageId" value = "1" />
+   									</h:commandLink>
+   									</h:form>
+			</center>
+			
+           
+			<BR /><BR />
+			
+		</body>
+
+	</ui:define>
+</ui:composition>

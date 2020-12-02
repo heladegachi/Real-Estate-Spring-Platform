@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,6 +41,8 @@ public class Annonce implements Serializable {
 	private String type;
 	@Column 
 	private Float price;
+	@Column 
+	private int rating;
 	@Column 
 	private String description;
 	public Annonce(String title, String adresse, String description, State state) {
@@ -78,6 +82,17 @@ public class Annonce implements Serializable {
 	@Column
 	private String history;
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="annonce")
+	private Set<Achat> Achats;
+	
+	
+	public Set<Achat> getAchats() {
+		return Achats;
+	}
+	public void setAchats(Set<Achat> achats) {
+		Achats = achats;
+	}
+	
 	
 	
 	public Long getNumberBathrooms() {
@@ -116,7 +131,20 @@ public class Annonce implements Serializable {
 			fetch=FetchType.EAGER)
 	private List<AnnonceReview> annonceReviews = new ArrayList<>();
 	
+	@OneToOne(mappedBy="annoncePosition", 
+			cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, 
+			fetch=FetchType.EAGER)
+	private AnnoncePosition annoncePosition;
 	
+	
+	
+	
+	public AnnoncePosition getAnnoncePosition() {
+		return annoncePosition;
+	}
+	public void setAnnoncePosition(AnnoncePosition annoncePosition) {
+		this.annoncePosition = annoncePosition;
+	}
 	@OneToMany(mappedBy="annonce", 
 			cascade=CascadeType.ALL,orphanRemoval=true)
 	private List<Notification> notifications = new ArrayList<>();
@@ -142,6 +170,12 @@ public class Annonce implements Serializable {
 	
 
 	
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
 	public AdState getAdState() {
 		return AdState;
 	}
@@ -422,13 +456,13 @@ public class Annonce implements Serializable {
 		this.numberBathrooms = numberBathrooms;
 		this.numberGarages = numberGarages;
 	}
-	public Annonce(Long annonceIdToBeUpdated, String title, String adresse,  Float price, String description, String picture,
-			String intSurface, String extSurface, Long numberRooms, StatePrice statePrice, Date createdAt, User user, String history, State state,
-			ContractType contractType, String country, String city, Long numberBathrooms, Long numberGarages) {
+	public Annonce(Long id, String title, String adresse,  Float price, String description, String picture,
+			String intSurface, String extSurface, Long numberRooms, StatePrice statePrice, Date createdAt, Date updateAt, User user, String history, State state,
+			ContractType contractType, String country, String city, Long numberBathrooms, Long numberGarages, AdState adState) {
 		super();
 		this.title = title;
 		this.adresse = adresse;
-		this.annonceIdToBeUpdated = annonceIdToBeUpdated;
+		this.id = id;
 		this.price = price;
 		this.description = description;
 		this.picture = picture;
@@ -437,6 +471,7 @@ public class Annonce implements Serializable {
 		this.numberRooms = numberRooms;
 		this.statePrice = statePrice;
 		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 		this.user = user;
 		this.history = history;
 		this.state = state;
@@ -445,7 +480,11 @@ public class Annonce implements Serializable {
 		this.city = city;
 		this.numberBathrooms = numberBathrooms;
 		this.numberGarages = numberGarages;
+		this.AdState = adState;
 	}
+
+
+	
 	public Annonce( String title, String adresse, Float price, String description, String picture,
 			String intSurface, String extSurface, Long numberRooms, StatePrice statePrice,
 			AdState adState, Date createdAt, Date updatedAt, Long numberBathrooms,
@@ -504,6 +543,31 @@ public class Annonce implements Serializable {
 		this.numberBathrooms = numberBathrooms;
 		this.numberGarages = numberGarages;
 	}
+	public Annonce(String title, String adresse,  Float price, String description, String picture,
+			String intSurface, String extSurface, Long numberRooms, StatePrice statePrice, Date createdAt, User user, String history, State state,
+			ContractType contractType, String country, String city, Long numberBathrooms, Long numberGarages, AdState adState, int rating) {
+		super();
+		this.title = title;
+		this.adresse = adresse;
+		AdState = adState;
+		this.price = price;
+		this.description = description;
+		this.picture = picture;
+		this.intSurface = intSurface;
+		this.extSurface = extSurface;
+		this.numberRooms = numberRooms;
+		this.statePrice = statePrice;
+		this.createdAt = createdAt;
+		this.user = user;
+		this.history = history;
+		this.state = state;
+		this.contractType = contractType;
+		this.country = country;
+		this.city = city;
+		this.numberBathrooms = numberBathrooms;
+		this.numberGarages = numberGarages;
+		this.rating= rating;
+	}
 	public Annonce(Long annonceIdToBeUpdated, String title, String adresse,  Float price, String description, String picture,
 			String intSurface, String extSurface, Long numberRooms, StatePrice statePrice, Date createdAt, User user, String history, State state,
 			ContractType contractType, String country, String city, Long numberBathrooms, Long numberGarages, AdState adState) {
@@ -533,6 +597,11 @@ public class Annonce implements Serializable {
 		super();
 		AdState = adState;
 		this.id = id;
+	}
+	public Annonce(Long id, int rating) {
+		super();
+		this.id = id;
+		this.rating = rating;
 	}
 	
 	

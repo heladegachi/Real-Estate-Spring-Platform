@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +38,12 @@ public class AnnonceReviewRestController {
 	 @ResponseBody 
 	 public AnnonceReview addAnn(@RequestBody AnnonceReview u) { 
 		 AnnonceReview ann = annReviewService.addAnnonceReview(u); 
+		 return ann; 
+	 }
+	 @PutMapping("/modify-annonceReview/{annonceReview-id}") 
+	 @ResponseBody 
+	 public AnnonceReview modifyAnn(@RequestBody AnnonceReview u) { 
+		 AnnonceReview ann = annReviewService.updateAnnonceReview(u); 
 		 return ann; 
 	 }
 	 

@@ -38,7 +38,19 @@ public class AnnonceReview implements Serializable {
 	@ManyToOne
 	private User user;
 	
+	@Column 
+	private int Rating;
 	
+	
+	
+
+	public int getRating() {
+		return Rating;
+	}
+
+	public void setRating(int rating) {
+		Rating = rating;
+	}
 
 	public User getUser() {
 		return user;
@@ -113,6 +125,21 @@ public class AnnonceReview implements Serializable {
 		
 		this.annonce = annonce;
 		this.user = user;
+	}
+	public AnnonceReview( Annonce annonce, User user) {
+		super();
+		
+		this.annonce = annonce;
+		this.user = user;
+	}
+
+	public AnnonceReview(String text, Date createdAt,  Annonce annonce, User user, int rating) {
+		super();
+		this.text = text;
+		this.createdAt = createdAt;  
+		this.annonce = annonce;
+		this.user = user;
+		Rating = rating;
 	}
 
 

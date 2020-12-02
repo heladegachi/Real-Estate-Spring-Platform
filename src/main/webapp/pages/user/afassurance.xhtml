@@ -1,0 +1,117 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+		<!-- BEGIN : TP1 JSF Introduction Login -->
+
+
+
+
+
+		<h:head>
+
+			<link href="../../resources/assets/css/vendor.css" rel="stylesheet" />
+			<link href="../../resources/assets/css/font-awesome.css"
+				rel="stylesheet" />
+			<link href="../../resources/assets/css/theme-blue-orange_red.css"
+				rel="stylesheet" />
+			<link href="../../resources/assets/css/custom.css" rel="stylesheet" />
+			<link href="../../resources/assets/css/ie-fix.css" rel="stylesheet" />
+			<link href="../../resources/assets/img/favicon.ico" rel="stylesheet" />
+			<link href="../../resources/assets/img/favicon.ico" rel="stylesheet"
+				type="image/x-icon" />
+
+		</h:head>
+
+
+
+
+
+
+
+
+
+
+
+		<body>
+		
+		
+		<h:panelGroup columns="2">
+		
+			<h:form>
+			
+				<h:dataTable value="#{assuranceController.surveils}" var="assurance" border="1">
+				<h:column><f:facet name="header"><h:outputText value="Start date" /></f:facet>
+				<h:outputText value="#{assurance.dateDebut}" /></h:column>
+				<h:column><f:facet name="header"><h:outputText value="End date" /></f:facet>
+				<h:outputText value="#{assurance.dateFin}" /></h:column>
+				
+				<h:column><f:facet name="header"><h:outputText value="Validation code" /></f:facet>
+				<h:outputText value="#{assurance.code}" /></h:column>
+				
+				<h:column><f:facet name="header"><h:outputText value="Price" /></f:facet>
+				<h:outputText value="#{assurance.prix}" /></h:column>
+				
+				<h:column><f:facet name="header"><h:outputText value="Company" /></f:facet>
+				<h:outputText value="#{assurance.entreprise}" /></h:column>
+				
+				<h:column >
+						<f:facet name="header">
+							<h:outputText value="Action" class="datatable__head-13 datatable__head-sort" />
+						</f:facet>
+						<h:commandButton type="submit" class="form__submit" 
+							action="#{assuranceController.removeSurv(assurance.id)}"
+							value="Remove" />
+							
+					</h:column>
+				</h:dataTable>
+				
+			</h:form>
+		</h:panelGroup>	
+			<BR /><BR/>
+			<center>
+			
+<h:panelGroup columns="2"><h:form><table>
+<h:graphicImage value="../../images/carte-visa-blue-boursorama-banque.jpg" />
+			<tr><td><h:outputText value="Subscription Id"></h:outputText></td><td>
+			<h:inputText value="#{assuranceController.idc}"></h:inputText></td></tr>
+			<BR/>
+			<tr><td><h:outputText value="Visa card number"></h:outputText></td><td>
+			<h:inputText value="#{assuranceController.carta}"></h:inputText></td></tr>
+			<BR/>
+			<tr><td><h:outputText value="expMonth"></h:outputText></td><td>
+			<h:inputText value="#{assuranceController.expMonth}"></h:inputText></td></tr>
+			<BR/>
+			<tr><td><h:outputText value="expYear"></h:outputText></td><td>
+			<h:inputText value="#{assuranceController.expYear}"></h:inputText></td></tr>
+			<BR/>
+			<tr><td><h:outputText value="cvc"></h:outputText></td><td>
+			<h:inputText value="#{assuranceController.cvc}"></h:inputText></td></tr>
+			<BR/>
+			<center>
+			<tr><td colspan="2"><h:commandButton type="submit" class="form__submit" value="Pay" action="#{assuranceController.Pay(assuranceController.idc,assuranceController.carta,assuranceController.expMonth,assuranceController.expYear,assuranceController.cvc)}" /></td>
+			</tr></center>
+		</table></h:form></h:panelGroup>
+</center>
+	<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places,drawing,geometry"></script>
+    <script type="text/javascript" src="http://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+   
+    <script type="text/javascript" src="../../resources/assets/js/vendor.js"></script>
+   
+    <script type="text/javascript" src="../../resources/assets/js/demodata.js"></script>
+ 
+    <script type="text/javascript" src="../../resources/assets/js/app.js"></script>
+ 
+    <script type="text/javascript" src="../../resources/assets/js/demo.js"></script>
+    
+
+		</body>
+
+	</ui:define>
+</ui:composition>

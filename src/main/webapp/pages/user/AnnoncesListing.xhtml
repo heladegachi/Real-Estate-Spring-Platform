@@ -2,6 +2,7 @@
  xmlns:f="http://java.sun.com/jsf/core" 
  xmlns:h="http://java.sun.com/jsf/html" 
  xmlns:ui="http://java.sun.com/jsf/facelets" 
+  xmlns:p="http://primefaces.org/ui"
  template="/template/templatenude.xhtml">
 <ui:param name="page_name" value="Accueil" />
 <ui:define name="content"> 
@@ -78,16 +79,12 @@
                     <div class="form-group">
                       <label for="in-listing-sort" class="control-label">Sort by:</label>
                       <div class="form-control--select">
-                        <select id="in-listing-sort" class="form-control js-in-select">
-                          <option>Price + P&amp;P: Highest First</option>
-                         
-                          <option>Best Match</option>
-                        </select>
+                        
                       </div>
                     </div>
                   </div>
                   <!--end of block .listing__sort-->
-                  <div class="listing__view"><span class="control-label">View:</span><a href="properties_listing_grid.html" class="btn--white"><i class="fa fa-th-large"></i></a><a href="properties_listing_list.html" class="btn--white active"><i class="fa fa-bars"></i></a><a href="properties_listing_table.html" class="btn--white"><i class="fa fa-table"></i></a></div>
+                  <div class="listing__view"><span class="control-label">View:</span><a href="AnnoncesListingGrid.jsf" class="btn--white active"><i class="fa fa-th-large"></i></a><a href="AnnoncesListing.jsf" class="btn--white"><i class="fa fa-bars"></i></a><a href="AnnoncesListingTable.jsf" class="btn--white"><i class="fa fa-table"></i></a></div>
                   <!--end of block .listing__view-->
                 </div>
            
@@ -102,13 +99,18 @@
                       
                         <div class="listing__item">
                           <div class="properties properties--list">
-                            <div class="properties__thumb"><a href="property_details.html" class="item-photo"><img src="../../resourses/assets/media-demo/properties/554x360/02.jpg" alt=""/>
+                            <div class="properties__thumb"><a href="" class="item-photo"><img src="../../resourses/assets/media-demo/properties/554x360/02.jpg" alt=""/>
                                 <figure class="item-photo__hover item-photo__hover--params"><span class="properties__params"> Exterior surface: #{annonce.extSurface} m²  </span><span class="properties__params"> Number of rooms: #{annonce.numberRooms} </span><span class="properties__time">Added date: #{annonce.createdAt} </span>
                                 </figure></a><span class="properties__ribon">        #{annonce.contractType}      </span>
                             </div>
                             <!-- end of block .properties__thumb-->
                             <div class="properties__details">
-                              <div class="properties__info"><a href="property_details.html" class="properties__address"><span class="properties__address-street">        <b>#{annonce.title}</b>         </span><span class="properties__address-city"> #{annonce.city}, #{annonce.country}</span></a>
+                              <div class="properties__info"><a href="" class="properties__address"><span class="properties__address-street">        <b>#{annonce.title}</b>
+                              
+                              
+                            </span><span class="properties__address-city"> #{annonce.city}, #{annonce.country}</span></a>
+                              
+                              
                                 <div class="properties__offer">
                                   <div class="properties__offer-column">
                                     <div class="properties__offer-label">Price</div>
@@ -121,10 +123,10 @@
 								<div class="properties__offer-value"><strong> #{annonce.price}</strong> $ </div>
 								</h:panelGroup>
 								<h:panelGroup rendered="#{ annonceController.changecurr and annonce.contractType eq 'rent' }">
-								        <div class="properties__offer-value"><strong> #{(annonce.price*93)/100}</strong><span class="properties__offer-period"> £/month</span></div>
+								        <div class="properties__offer-value"><strong> #{annonceController.fromDollarToDinar(annonce.price)}</strong><span class="properties__offer-period"> DT/month</span></div>
 								</h:panelGroup>
 								<h:panelGroup rendered="#{ annonceController.changecurr and annonce.contractType eq 'sale' }">
-								        <div class="properties__offer-value"><strong> #{(annonce.price*93)/100}</strong><span class="properties__offer-period"> £</span></div>
+								        <div class="properties__offer-value"><strong> #{annonceController.fromDollarToDinar(annonce.price)}</strong><span class="properties__offer-period"> DT </span></div>
 								</h:panelGroup>		
 								
 								
@@ -142,8 +144,11 @@
                                 <div class="properties__params--mob"><a href="#" class="properties__more">View details</a><span class="properties__params">Built-Up - #{annonce.extSurface} m²</span><span class="properties__params">Land Size - #{annonce.intSurface} Sq Ft</span></div>
                               </div>
                               <div class="properties__intro">
-                                #{annonce.description}  	
-                                 
+                                #{annonce.description}  
+                                	
+                                 <h:panelGroup rendered="#{not empty annonceController.rating}">
+                                  <p:rating value="#{annonceController.annonceRating(annonce.id)}" readonly="true" />
+                               </h:panelGroup>
                               </div>
                               
                             </div>
@@ -174,7 +179,7 @@
                   </div>
                   <div class="widget__content">
                     <!-- BEGIN SEARCH-->
-                    <form action="properties_listing_list.html" class="form form--flex form--search js-search-form form--sidebar">
+                    <form action="" class="form form--flex form--search js-search-form form--sidebar">
                       <div class="row">
                         <div class="form-group">
                           <label for="in-keyword" class="control-label">Keyword</label>

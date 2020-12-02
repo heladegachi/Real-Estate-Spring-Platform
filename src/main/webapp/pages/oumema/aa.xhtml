@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<!-- 	template="/template/template.xhtml"> -->
+	<h:body>
+<h:form>
+		<h:outputText value="Numero Carte" ></h:outputText>
+
+		<h:inputText  class="form-control" placeholder=" Numero Carte" value="#{commandeController.carta}"></h:inputText>
+
+		<h:outputText value="month"></h:outputText>
+		<h:inputText class="form-control" placeholder=" Numero Carte" value="#{commandeController.expMonth}"></h:inputText>
+		<h:outputText value="year"></h:outputText>
+
+		<h:inputText class="form-control" placeholder=" Numero Carte" value="#{commandeController.expYear}"></h:inputText>
+		<h:outputText value="cvc"></h:outputText>
+
+		<h:inputText class="form-control" placeholder=" Numero Carte" value="#{commandeController.cvc}"></h:inputText>
+		  <h:commandButton value="Place Order"
+							action="#{commandeController.Pay(1,1,commandeController.carta,commandeController.expMonth,commandeController.expYear,commandeController.cvc)}" 
+							  />
+							  </h:form>
+	</h:body>
+</ui:composition>

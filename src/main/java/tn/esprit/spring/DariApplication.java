@@ -42,6 +42,7 @@ public class DariApplication {
 		FilterRegistrationBean registration = new FilterRegistrationBean();
 		registration.setFilter(new LoginFilter());
 		registration.addUrlPatterns("/pages/user/AnnonceAdd.jsf");
+		registration.addUrlPatterns("/pages/admin/*");
 		//registration.addUrlPatterns("/pages/admin/*");
 		return registration; }
 

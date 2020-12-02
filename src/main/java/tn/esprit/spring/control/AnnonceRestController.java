@@ -27,7 +27,7 @@ public class AnnonceRestController {
 		 List<Annonce> list = annService.retrieveAllAnnonces(); 
 		 return list; 
 		 } 
-	// http://localhost:8081/SpringMVC/servlet/retrieve-annonce/{annonce-id} 
+	// http://localhost:8081/SpringMVC/servlet/retrieve-ann/{annonce-id} 
 	 @GetMapping("/retrieve-ann/{annonce-id}") 
 	 @ResponseBody 
 	 public Annonce retrieveAnn(@PathVariable("annonce-id") String annonceId) { 

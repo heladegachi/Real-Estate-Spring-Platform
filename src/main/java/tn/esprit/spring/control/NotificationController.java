@@ -5,6 +5,8 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,6 +20,8 @@ import tn.esprit.spring.entity.Action;
 import tn.esprit.spring.entity.Annonce;
 import tn.esprit.spring.entity.Notification;
 import tn.esprit.spring.entity.Type;
+import tn.esprit.spring.entity.User;
+import tn.esprit.spring.repository.NotificationRepository;
 import tn.esprit.spring.service.AnnReviewService;
 import tn.esprit.spring.service.AnnService;
 import tn.esprit.spring.service.NotificationServiceImpl;
@@ -39,6 +43,8 @@ public class NotificationController {
 	UserController usercontroller;
 	@Autowired
 	NotificationServiceImpl notificationservice;
+	@Autowired
+	NotificationRepository notifRepo;
 	
 	
 	private Integer notificationId;
@@ -186,6 +192,13 @@ public class NotificationController {
 	public int getAll()
 	{
 		return a=0;
+	}
+	
+	
+	public void putasRead(long notifiid)
+	{	
+		//int notifid = notificationId.intValue();
+			notifRepo.isReadJPQL(notifiid);
 	}
 	
 

@@ -1,6 +1,7 @@
 package tn.esprit.spring.control;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -37,7 +38,8 @@ public class AnnonceReviewController {
 	AnnonceController annoncecontroller;
 	@Autowired
 	UserController usercontroller;
-	
+	@Autowired
+	RatingView ratingView;
 	
 	
 	private String text;
@@ -165,12 +167,78 @@ public class AnnonceReviewController {
 			User currentuser= usercontroller.getAuthenticatedUser();
 			Annonce currentAnnonce = annoncecontroller.getCurrentAnnonce();
 			Date currentdate = new Date();
-			iannRevservice.addAnnonceReview(new AnnonceReview( text, currentdate, currentAnnonce, currentuser )); 
+			
+			int rating = ratingView.getRating3() ;
+			
+			iannRevservice.addAnnonceReview(new AnnonceReview( text, currentdate, currentAnnonce, currentuser, rating));
+			
+			//annoncecontroller.
 			
 		return navigateTo;
 		}
 	}
 	
+	
+	
+	
+	
+	
+	public boolean check(List<AnnonceReview> annRevs) {
+		User currentuser= usercontroller.getAuthenticatedUser();
+		if ( annRevs.isEmpty() )
+			return false;
+		for (int i=0; i<annRevs.size();i++)
+		{
+			
+			 if ( !annRevs.isEmpty() && annRevs.get(i).getUser().getId() == currentuser.getId() )
+				return true;
+			 			 
+		}
+	    return false;
+	  }
+	
+	
+	
+	
+	public String ajouterAnnonceRevOnce(List<AnnonceReview> annRevs )
+	{
+		String navigateTo = "null";
+		if (usercontroller.doLogin()==navigateTo )
+			{return "/login.xhtml?faces-redirect=true";}
+		else{
+			Annonce currentAnnonce = annoncecontroller.getCurrentAnnonce();
+			User currentuser= usercontroller.getAuthenticatedUser();
+	
+			
+
+			Date currentdate = new Date();
+			
+			boolean test = check(annRevs);
+					
+			if ( test == true )
+			{
+				FacesMessage facesMessage =
+						new FacesMessage("You can only comment once on a specific property");
+				FacesContext.getCurrentInstance().addMessage("form:btn", facesMessage);
+			}
+			
+			
+			
+			else if (test == false)
+			{
+				
+				int rating = ratingView.getRating3() ;
+				
+				iannRevservice.addAnnonceReview(new AnnonceReview( text, currentdate, currentAnnonce, currentuser, rating));
+				
+			}
+
+
+		return navigateTo;
+		}
+		
+		
+	}
 	
 	public void displayAnnonceReview(AnnonceReview annrev) {
 		this.setText(annrev.getText());

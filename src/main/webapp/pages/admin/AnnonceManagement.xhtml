@@ -3,6 +3,7 @@
  xmlns:f="http://java.sun.com/jsf/core" 
  xmlns:h="http://java.sun.com/jsf/html" 
  xmlns:ui="http://java.sun.com/jsf/facelets" 
+ xmlns:p="http://primefaces.org/ui" 
  template="/template/template2.xhtml">
 <ui:param name="page_name" value="Accueil" />
 <ui:define name="content"> 
@@ -62,7 +63,7 @@
                 <div class="site__main">
                                     <div class="widget js-widget widget--dashboard">
                                       <div class="widget__header">
-                                        <h2 class="widget__title">Property Management</h2><a href="dashboard_property_new.html" class="widget__btn js-widget-btn widget__btn--action">Add new property</a>
+                                        <h2 class="widget__title">Property Management</h2><a href="../user/AnnonceAdd.jsf" class="widget__btn js-widget-btn widget__btn--action">Add new property</a>
                                       </div>
                                       <div class="widget__content">
                                         <div class="listing listing--grid">
@@ -149,6 +150,33 @@
                                               </h:panelGroup>
                                               
                                               
+                                              
+                                               <h:panelGroup rendered="#{annonce.adState eq 'Paid' }" >
+                                              <div class="properties__item-header"><span class="properties__state properties__state--highlight">#{annonce.adState}</span>
+
+                                              
+                                                <div class="properties__actions">
+                                                  <button type="button" class="properties__link">Edit</button>
+                                                  <div class="dropdown properties__actions-dropdown">
+                                                    <button data-toggle="dropdown" type="button" class="dropdown-toggle properties__dropdown-toggle">...</button>
+                                                    <div class="dropdown__menu properties__dropdown-menu">
+                                                       <h:form>
+                         							 <h:commandLink action = "#{annonceController.acceptAnnonce(annonce.id)}" value = "Accept property" id="btn" class="properties__link" ></h:commandLink>
+                         							 </h:form>
+                         							   <h:form>
+                         							 <h:commandLink action = "#{annonceController.denyAnnonce(annonce.id)}" value = "Deny property" id="btn" class="properties__link" ></h:commandLink>
+                         							 </h:form>
+                         							  <h:form>
+                         							 <h:commandLink action = "#{annonceController.removeAnnonce(annonce.id)}" value = "Delete property" id="btn" class="properties__link" ></h:commandLink>
+                         							 </h:form>
+                         							
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              </h:panelGroup>
+                                              
+                                              
                                               <h:panelGroup rendered="#{annonce.adState eq 'Denied' }" >
 												 <div class="properties__item-header"><span class="properties__state properties__state--hidden">#{annonce.adState}</span>
 
@@ -176,7 +204,7 @@
                                              
                                               
                                               
-                                              <div class="properties__thumb"><a href="property_details.html" class="item-photo item-photo--static"><img src="../../resources/assets/media-demo/properties/554x360/01.jpg" alt=""></img>
+                                              <div class="properties__thumb"><a href="" class="item-photo item-photo--static"><img src="../../resources/assets/media-demo/properties/554x360/01.jpg" alt=""></img>
                                                   <figure class="item-photo__hover item-photo__hover--params"><span class="properties__params">Built-Up - 165 Sq Ft</span><span class="properties__params">Exterior surface: #{annonce.extSurface} m²</span><span class="properties__time"> Added date: #{annonce.createdAt} </span><span class="properties__more">View details</span></figure></a><span class="properties__ribon">For #{annonce.contractType}</span><span class="properties__ribon properties__ribon--status properties__ribon--done"> 
                                                    <h:form>
                          							 <h:commandLink action = "#{annonceController.gotoAnnonceDetail(annonce)}" value = "VIEW DETAILS" ></h:commandLink>
@@ -185,7 +213,7 @@
                                               </div>
                                               <!-- end of block .properties__thumb-->
                                               <div class="properties__details">
-                                                <div class="properties__info"><a href="property_details.html" class="properties__address"><span class="properties__address-street">#{annonce.title}</span><span class="properties__address-city"> #{annonce.city} , #{annonce.country}</span></a>
+                                                <div class="properties__info"><a href="" class="properties__address"><span class="properties__address-street">#{annonce.title} </span><span class="properties__address-city"> #{annonce.city} , #{annonce.country}</span></a>
                                                   
                                                  
                                                   
@@ -207,10 +235,10 @@
 																<div class="properties__offer-value"> Price:<strong> #{annonce.price}</strong> $ </div>
 														</h:panelGroup>
 														<h:panelGroup rendered="#{ annonceController.changecurr and annonce.contractType eq 'rent' }">
-														        <div class="properties__offer-value"> Price:<strong> #{(annonce.price*93)/100}</strong><span class="properties__offer-period"> £/month</span></div>
+														        <div class="properties__offer-value"> Price:<strong> #{annonceController.fromDollarToDinar(annonce.price)}</strong><span class="properties__offer-period"> DT/month</span></div>
 														</h:panelGroup>
 														<h:panelGroup rendered="#{ annonceController.changecurr and annonce.contractType eq 'sale' }">
-														        <div class="properties__offer-value"> Price:<strong> #{(annonce.price*93)/100}</strong><span class="properties__offer-period"> £</span></div>
+														        <div class="properties__offer-value"> Price:<strong> #{annonceController.fromDollarToDinar(annonce.price)}</strong><span class="properties__offer-period"> DT</span></div>
 														</h:panelGroup>														
 														
 														

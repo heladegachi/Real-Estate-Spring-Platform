@@ -46,8 +46,9 @@ public class AnnReviewServiceImpl implements AnnReviewService{
 	}
 
 	
-	public void deleteAnnonceReview(long id) {
-		annReviewRepository.deleteById(id);
+	@Override
+	public void deleteAnnonceReview(Long id) {
+		annReviewRepository.deleteAnnonceReview(id);
 		
 	}
 
@@ -91,4 +92,7 @@ public class AnnReviewServiceImpl implements AnnReviewService{
 		
 		return reviews;
 	}
+	
+	
+	
 }

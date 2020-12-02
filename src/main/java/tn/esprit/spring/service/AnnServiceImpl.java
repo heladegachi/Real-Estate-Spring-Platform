@@ -47,6 +47,23 @@ public class AnnServiceImpl implements AnnService {
 		
 	}
 	
+	@Override 
+	public List<Annonce> retrieveBestReviewed() {
+		List<Annonce> Annonces=(List<Annonce>) annRepository.findBestReviewed();
+		for(Annonce annonce:Annonces){
+		L.info("user +++ : "+ annonce);}
+		return Annonces;
+	}
+	
+	@Override 
+	public List<Annonce> retrieveHighestPrice(long userId) {
+		List<Annonce> Annonces=(List<Annonce>) annRepository.findHighestPrice(userId);
+		for(Annonce annonce:Annonces){
+		L.info("user +++ : "+ annonce);}
+		return Annonces;
+	}
+
+	
 	public Annonce retrieveAnnonce(String id) {
 		Annonce r;
 		r=annRepository.findById(Long.parseLong(id)).orElse(null);
@@ -98,6 +115,14 @@ public class AnnServiceImpl implements AnnService {
 		annRepository.acceptAnnonceJPQL(annId);
 	}
 	@Override
+	public void paidAnnonceJPQL(Long annId) {
+		annRepository.paidAnnonceJPQL(annId);
+	}
+	@Override
+	public void changeRatingJPQL(Long annId, int rating){
+		annRepository.changeRatingJPQL(annId, rating);
+	}
+	@Override
 	public void denyAnnonceJPQL(Long annId) {
 		annRepository.denyAnnonceJPQL(annId);
 	}
@@ -108,6 +133,10 @@ public class AnnServiceImpl implements AnnService {
 	
 }
 
+	@Override
+	public void deleteAnnonceL(long id) {
+		annRepository.deleteById(id);
+	}
 
 
 

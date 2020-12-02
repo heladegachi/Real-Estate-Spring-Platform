@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import tn.esprit.spring.entity.Notification;
 import tn.esprit.spring.entity.User;
@@ -37,4 +39,9 @@ public interface NotificationRepository extends CrudRepository<Notification,Inte
 	
 	@Query("SELECT u FROM Notification u WHERE u.Action = 'Deleted' ORDER BY u.createdAt DESC")
 	List<Notification> findAllDeletings();
+	  
+	@Modifying 
+	@Transactional
+	@Query("UPDATE Notification e SET e.isRead= 1 where e.notificationId=:notificationId")
+	public void isReadJPQL( @Param("notificationId") long notificationId);	
 }

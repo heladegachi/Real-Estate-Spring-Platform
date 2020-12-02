@@ -1,0 +1,138 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:f="http://java.sun.com/jsf/core" 
+ xmlns:h="http://java.sun.com/jsf/html" 
+ xmlns:ui="http://java.sun.com/jsf/facelets" 
+ template="/template/template.xhtml">
+<ui:param name="page_name" value="Accueil" />
+<ui:define name="content"> 
+<!-- BEGIN : TP1 JSF Introduction Login --> 
+
+
+
+
+
+<h:head>
+
+<link href="../../resources/assets/css/vendor.css"  rel="stylesheet" />
+		<link href="../../resources/assets/css/font-awesome.css"  rel="stylesheet" />
+		<link href="../../resources/assets/css/theme-blue-orange_red.css"  rel="stylesheet" />
+		<link href="../..resources/assets/css/custom.css"  rel="stylesheet" />
+		<link href="../../resources/assets/css/ie-fix.css"  rel="stylesheet" />
+		<link href="../../resources/assets/img/favicon.ico" rel="stylesheet" />
+		<link href="../../resources/assets/img/favicon.ico" rel="stylesheet" type="image/x-icon" />
+
+</h:head>
+
+
+
+
+
+
+
+
+
+
+
+<body>
+<BR />
+					<BR />
+					
+<center>
+<h:graphicImage value="../../images/zer.jpg" />
+<BR/> <BR/>
+<h:panelGroup columns="2"><h:form><table>
+<tr><td><h:outputText value="this is the first time you have used our application?(Yes/No)"></h:outputText></td>
+<td><h:selectBooleanCheckbox value="#{FicheSatisController.question1}"></h:selectBooleanCheckbox></td></tr>
+<tr>
+<td><h:outputText value="how did you hear about our application?"></h:outputText></td>
+<td><h:selectOneMenu value="#{FicheSatisController.question2}">
+<f:selectItem itemLabel="" itemValue="#{null}" />
+<f:selectItems value="#{FicheSatisController.questions2}" />
+</h:selectOneMenu></td>
+</tr>
+<tr><td><h:outputText value="what do you think of our subscription service?"></h:outputText></td>
+<td><h:inputText value="#{FicheSatisController.question3}"></h:inputText></td></tr>
+<tr><td><h:outputText value="what do you think of our rental service?"></h:outputText></td>
+<td><h:inputText value="#{FicheSatisController.question4}"></h:inputText></td></tr>
+<tr><td><h:outputText value="what do you think of our purchasing service?"></h:outputText></td>
+<td><h:inputText value="#{FicheSatisController.question5}"></h:inputText></td></tr>
+<tr><td><h:outputText value="what do you think of our sales service?"></h:outputText></td>
+<td><h:inputText value="#{FicheSatisController.question6}"></h:inputText></td></tr>
+<tr><td><h:outputText value="what do you think of our what do you think of our furniture sales service?"></h:outputText></td>
+<td><h:inputText value="#{FicheSatisController.question7}"></h:inputText></td></tr>
+<tr><td><h:outputText value="how did you find your welcome to the claims department in the event of a problem?"></h:outputText></td>
+<td><h:inputText value="#{FicheSatisController.question8}"></h:inputText></td></tr>
+<tr><td><h:outputText value="proposal"></h:outputText></td>
+<td><h:inputText value="#{FicheSatisController.proposition}"></h:inputText></td></tr>
+
+
+<tr><td colspan="2"><h:commandButton class="form__submit" value="add a satisfaction sheet" action="#{FicheSatisController.addFiche()}" /></td></tr>
+</table></h:form></h:panelGroup>
+  
+         <BR />
+					<BR />
+					<BR />
+					<BR />
+					
+  			<h:panelGroup columns="2" layout="block" styleclass="centre">
+		
+			<h:form>
+			
+				<h:dataTable value="#{FicheSatisController.surveils}" var="assurance" border="1">
+				<h:column><f:facet name="header"><h:outputText value="Question 1" /></f:facet>
+				<h:outputText value="#{assurance.question1}" /></h:column>
+				
+				
+				<h:column><f:facet name="header"><h:outputText value="Question 3" /></f:facet>
+				<h:outputText value="#{assurance.question3}" /></h:column>
+				<h:column><f:facet name="header"><h:outputText value="Question 4" /></f:facet>
+				<h:outputText value="#{assurance.question4}" /></h:column>
+				<h:column><f:facet name="header"><h:outputText value="Question 5" /></f:facet>
+				<h:outputText value="#{assurance.question5}" /></h:column>
+				<h:column><f:facet name="header"><h:outputText value="Question 6" /></f:facet>
+				<h:outputText value="#{assurance.question6}" /></h:column>
+				<h:column><f:facet name="header"><h:outputText value="Question 7" /></f:facet>
+				<h:outputText value="#{assurance.question7}" /></h:column>
+				<h:column><f:facet name="header"><h:outputText value="Question 8" /></f:facet>
+				<h:outputText value="#{assurance.question8}" /></h:column>
+				<h:column><f:facet name="header"><h:outputText value="Proposition" /></f:facet>
+				<h:outputText value="#{assurance.proposition}" /></h:column>
+				<h:column >
+						<f:facet name="header">
+							<h:outputText value="Action" class="datatable__head-13 datatable__head-sort" />
+						</f:facet>
+						<h:commandButton type="submit" class="form__submit" 
+							action="#{FicheSatisController.removeSurv(assurance.id)}"
+							value="Remove" />
+							
+					</h:column>
+				</h:dataTable>
+				
+			</h:form>
+		</h:panelGroup>	
+            
+            </center>   
+            
+            
+            
+
+
+<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places,drawing,geometry"></script>
+    <script type="text/javascript" src="http://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+   
+    <script type="text/javascript" src="../../resources/assets/js/vendor.js"></script>
+   
+    <script type="text/javascript" src="../../resources/assets/js/demodata.js"></script>
+ 
+    <script type="text/javascript" src="../../resources/assets/js/app.js"></script>
+ 
+    <script type="text/javascript" src="../../resources/assets/js/demo.js"></script>
+    
+   
+    
+    </body>
+    
+</ui:define>
+</ui:composition>

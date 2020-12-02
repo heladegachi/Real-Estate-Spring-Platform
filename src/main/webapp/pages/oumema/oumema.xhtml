@@ -1,0 +1,197 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+		<!-- BEGIN : TP1 JSF Introduction Login -->
+
+
+
+
+
+		<h:head>
+			<link href="../../resources/assets1/css/vendor.css" rel="stylesheet" />
+			<link href="../../resources/assets1/css/font-awesome.css"
+				rel="stylesheet" />
+			<link href="../../resources/assets1/css/theme-blue-orange_red.css"
+				rel="stylesheet" />
+			<link href="../..resources/assets1/css/custom.css" rel="stylesheet" />
+			<link href="../../resources/assets1/css/ie-fix.css" rel="stylesheet" />
+			<link href="../../resources/assets1/img/favicon.ico" rel="stylesheet" />
+			<link href="../../resources/assets1/img/favicon.ico" rel="stylesheet"
+				type="image/x-icon" />
+
+		</h:head>
+
+
+
+
+
+
+
+
+
+
+
+		<body>
+
+			<h:body>
+				<!-- Search Wrapper Area Start -->
+
+				<!-- Search Wrapper Area End -->
+
+				<!-- ##### Main Content Wrapper Start ##### -->
+
+
+				<!-- Header Area Start -->
+
+				<!-- Header Area End -->
+
+				<div class="cart-table-area section-padding-100">
+					<div class="container-fluid">
+						<h:form>
+							<div class="row">
+								<div class="col-12 col-lg-8">
+									<div class="cart-title mt-50">
+										<h2>Shopping Cart</h2>
+									</div>
+
+									<div class="cart-table clearfix">
+
+										<table class="table table-responsive">
+											<thead>
+												<tr>
+													<th></th>
+													<th>Name</th>
+													<th>Price</th>
+													<th>Quantity</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="cart_product_img"><a href="#"><img
+															src="../ressources/img/#{furnitureController.furniture.image}"
+															alt="Product" /></a></td>
+													<td class="cart_product_desc">
+														<h5>
+															<h:outputText
+																value="#{furnitureController.furniture.name}" />
+														</h5>
+													</td>
+													<td class="price"><span><h:outputText
+																value="#{furnitureController.furniture.price}" /></span></td>
+
+													<td class="qty">
+
+														<div class="qty-btn d-flex">
+															<p>Qty</p>
+															<div class="quantity">
+																<span class="qty-minus"
+																	onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
+																	class="fa fa-minus" aria-hidden="true"></i></span>
+																<!--                                                     <h:inputText class="form-control" placeholder="Quantity" value="#{furnitureController.quantity}"></h:inputText> -->
+
+																<h:inputText type="number" class="qty-text" id="qty"
+																	step="1" min="1" max="300" name="quantity"
+																	value="#{furnitureController.quantity}"></h:inputText>
+
+																<span class="qty-plus"
+																	onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
+																	class="fa fa-plus" aria-hidden="true"></i></span>
+															</div>
+														</div>
+													</td>
+
+												</tr>
+
+
+											</tbody>
+										</table>
+
+									</div>
+								</div>
+								<div class="col-12 col-lg-4">
+									<div class="cart-summary">
+										<h5>Cart Total</h5>
+										<ul class="summary-table">
+											<li><span>subtotal:</span> <span>$<h:outputText
+														value="#{furnitureController.furniture.price}" /></span></li>
+											<li><span>delivery:</span> <span>Free</span></li>
+											<li><span>total:</span> <span>$<h:outputText
+														value="#{furnitureController.furniture.price}" /></span></li>
+										</ul>
+										<div class="cart-btn mt-100">
+
+											<!--                                 <a href="cart.html" class="btn amado-btn w-100">addtocart</a> -->
+											<h:commandButton value="add to cart"
+												action="#{furnitureController.addMeubleDansPanier12(furnitureController.furniture.id, furnitureController.quantity ,furnitureController.idPanier)}"
+												class="form__submit" />
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</h:form>
+					</div>
+				</div>
+			
+				
+				<!-- ##### Main Content Wrapper End ##### -->
+
+
+				<!-- ##### Footer Area End ##### -->
+
+				<!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+				<script src="../ressources/js/jquery/jquery-2.2.4.min.js"></script>
+				<!-- Popper js -->
+				<script src="../ressources/js/popper.min.js"></script>
+				<!-- Bootstrap js -->
+				<script src="../ressources/js/bootstrap.min.js"></script>
+				<!-- Plugins js -->
+				<script src="../ressources/js/plugins.js"></script>
+				<!-- Active js -->
+				<script src="../ressources/js/active.js"></script>
+
+			</h:body>
+
+
+
+
+
+
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+
+			<script type="text/javascript"
+				src="http://maps.google.com/maps/api/js?libraries=places,drawing,geometry"></script>
+			<script type="text/javascript"
+				src="http://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+
+			<script type="text/javascript"
+				src="../../resources/assets/js/vendor.js"></script>
+
+			<script type="text/javascript"
+				src="../../resources/assets/js/demodata.js"></script>
+
+			<script type="text/javascript" src="../../resources/assets/js/app.js"></script>
+
+			<script type="text/javascript"
+				src="../../resources/assets/js/demo.js"></script>
+
+
+
+		</body>
+
+	</ui:define>
+</ui:composition>

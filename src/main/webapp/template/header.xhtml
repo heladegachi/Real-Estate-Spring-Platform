@@ -20,12 +20,40 @@
                   <button data-toggle="dropdown" type="button" class="dropdown-toggle dropdown__btn">
                     <svg class="header__settings-icon">
                       <use href="#icon-money"></use>
-                    </svg>USD
+                    </svg>
+                    		<h:panelGroup rendered="#{not annonceController.changecurr}">
+									USD
+							</h:panelGroup>
+							<h:panelGroup rendered="#{ annonceController.changecurr}">
+							  
+							         Euro
+							
+							</h:panelGroup>
+							
                   </button>
                   <div class="dropdown__menu">
                     <ul>
-                      <li class="dropdown__item"><a href="#" class="dropdown__link">EUR</a></li>
-                      <li class="dropdown__item"><a href="#" class="dropdown__link">DLR</a></li>
+                    
+
+							<h:form>
+				   	  <li class="dropdown__item"> 
+				   	  
+   							<h:commandLink action = "#{annonceController.changeCurrency()}" value = "DinarT"  class="dropdown__link">
+   									   	  
+   
+  						    	<f:param name = "pageId"  value = "1" />
+   							</h:commandLink>
+   							</li>
+                       </h:form>
+                     <li class="dropdown__item">   
+                     	<h:form>
+   							<h:commandLink action = "#{annonceController.changeCurrency2()}" value = "USD"  class="dropdown__link">
+  						    	<f:param name = "pageId" value = "2" />
+   							</h:commandLink>
+                       </h:form>
+                      </li>
+                      	
+                       
                     </ul>
                   </div>
                 </div>

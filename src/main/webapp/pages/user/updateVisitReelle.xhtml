@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>#{page_name}</title>
+</h:head>
+
+
+
+
+
+
+<body>
+
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+
+
+       <p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width:100%;height:400px" />
+        <script type="text/javascript">
+												PrimeFaces.locales['de'] = {
+													closeText : 'Schließen',
+													prevText : 'Zurück',
+													nextText : 'Weiter',
+													monthNames : [ 'Januar',
+															'Februar', 'März',
+															'April', 'Mai',
+															'Juni', 'Juli',
+															'August',
+															'September',
+															'Oktober',
+															'November',
+															'Dezember' ],
+													monthNamesShort : [ 'Jan',
+															'Feb', 'Mär',
+															'Apr', 'Mai',
+															'Jun', 'Jul',
+															'Aug', 'Sep',
+															'Okt', 'Nov', 'Dez' ],
+													dayNames : [ 'Sonntag',
+															'Montag',
+															'Dienstag',
+															'Mittwoch',
+															'Donnerstag',
+															'Freitag',
+															'Samstag' ],
+													dayNamesShort : [ 'Son',
+															'Mon', 'Die',
+															'Mit', 'Don',
+															'Fre', 'Sam' ],
+													dayNamesMin : [ 'S', 'M',
+															'D', 'M ', 'D',
+															'F ', 'S' ],
+													weekHeader : 'Woche',
+													firstDay : 1,
+													isRTL : false,
+													showMonthAfterYear : false,
+													yearSuffix : '',
+													timeOnlyTitle : 'Nur Zeit',
+													timeText : 'Zeit',
+													hourText : 'Stunde',
+													minuteText : 'Minute',
+													secondText : 'Sekunde',
+													currentText : 'Aktuelles Datum',
+													ampm : false,
+													month : 'Monat',
+													week : 'Woche',
+													day : 'Tag',
+													allDayText : 'Ganzer Tag'
+												};
+											</script>
+											<style type="text/css">
+                                                   .value {
+	                                               font-weight: bold;
+                                                          }
+                                             </style>	
+									
+       
+	<style type="text/css">
+.label {
+	width: 20%;
+	padding: 4px;
+}
+
+.value {
+	width: 80%;
+	padding: 4px;
+}
+
+.grid {
+	width: 100%;
+}
+
+.error {
+	color: red;
+}
+
+.outputLabel {
+	font-weight: bold;
+}
+
+.grid {
+	width: 33%;
+	padding: 4px;
+}
+</style>
+
+
+	<h:form>
+
+		<p:growl id="growl" sticky="true" showDetail="true" />
+
+		<p:wizard flowListener="#{updateVisitReelleView.onFlowProcess}">
+			<p:tab id="personal" title="Personal">
+				<p:panel header="Personal Details">
+					<p:messages />
+					<h:panelGrid columns="2" columnClasses="label, value">
+							
+						<h:outputText value="Firstname: *" />
+						<p:inputText value="#{updateVisitReelleView.visitReelle.firstname}" required="true"
+							label="Firstname" />
+
+						<h:outputText value="Lastname: *" />
+						<p:inputText value="#{updateVisitReelleView.visitReelle.lastname}" required="true"
+							label="Lastname" />
+
+						<h:outputText value="Building ID: " />
+						<p:inputText value="#{updateVisitReelleView.visitReelle.buildingidentifier}" />
+
+						<h:outputText value="Skip to last: " />
+						<h:selectBooleanCheckbox value="#{updateVisitReelleView.skip}" />
+					</h:panelGrid>
+				</p:panel>
+			</p:tab>
+
+			<p:tab id="address" title="Address">
+				<p:panel header=" Building Address Details">
+					<p:messages />
+					<h:panelGrid columns="2" columnClasses="label, value">
+						<h:outputText value="Street: " />
+						<p:inputText value="#{updateVisitReelleView.visitReelle.street}" />
+
+						<h:outputText value="Postal Code: " />
+						<p:inputText value="#{updateVisitReelleView.visitReelle.postalCode}" />
+
+						<h:outputText value="City: " />
+						<p:inputText value="#{updateVisitReelleView.visitReelle.city}" />
+
+						<h:outputText value="Skip to last: " />
+						<h:selectBooleanCheckbox value="#{updateVisitReelleView.skip}" />
+					</h:panelGrid>
+				</p:panel>
+			</p:tab>
+
+			<p:tab id="contact" title="Contact">
+				<p:panel header="Contact Information">
+					<p:messages />
+					<h:panelGrid columns="2" columnClasses="label, value">
+						<h:outputText value="Email: *" />
+						<p:inputText value="#{updateVisitReelleView.visitReelle.email}" required="true"
+							label="Email" />
+
+						<h:outputText value="Phone: " />
+						<p:inputText value="#{updateVisitReelleView.visitReelle.phone}" />
+
+						<h:outputText value="Additional Info: " />
+						<p:inputText value="#{updateVisitReelleView.visitReelle.info}" />
+					</h:panelGrid>
+				</p:panel>
+			</p:tab>
+
+
+
+<p:tab id="Date" title="Date">
+				<p:panel header="Date And Time ">
+					<p:messages />
+				
+                                             <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+     
+                                                <h:panelGrid columns="2" cellpadding="5">
+                                                 <p:outputLabel for="event" value="Date:" />
+                                                     <p:calendar id="event" pattern="dd.MM.yyyy HH:mm">
+                                                     <p:ajax event="dateSelect" listener="#{updateVisitReelleView.onDateSelect}" update="msgs" />
+                                                       </p:calendar>
+                                                         </h:panelGrid>
+           
+                                               <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                                                <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                                                  <h:outputText value="Event:" />
+                                                    <h:outputText value="#{calendarView.date4}">
+                                                          <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                                                           </h:outputText>
+                                                  
+                                                              </p:panelGrid>
+                                                           </p:dialog>
+                                                         
+				</p:panel>
+			</p:tab>
+			
+			
+			
+			
+			
+			
+			<p:tab id="confirm" title="Confirmation">
+				<p:panel header="Confirmation">
+					<h:panelGrid id="confirmation" columns="3"
+						columnClasses="grid,grid,grid">
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Firstname: " />
+							<h:outputText value="#{updateVisitReelleView.visitReelle.firstname}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="Lastname: " />
+							<h:outputText value="#{updateVisitReelleView.visitReelle.lastname}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="Building ID: " />
+							<h:outputText value="#{updateVisitReelleView.visitReelle.buildingidentifier}"
+								styleClass="outputLabel" />
+						</h:panelGrid>
+
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Street: " />
+							<h:outputText value="#{updateVisitReelleView.visitReelle.street}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="Postal: " />
+							<h:outputText value="#{updateVisitReelleView.visitReelle.postalCode}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="City: " />
+							<h:outputText value="#{updateVisitReelleView.visitReelle.city}"
+								styleClass="outputLabel" />
+						</h:panelGrid>
+
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Email: " />
+							<h:outputText value="#{updateVisitReelleView.visitReelle.email}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="Phone " />
+							<h:outputText value="#{updateVisitReelleView.visitReelle.phone}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="Info: " />
+							<h:outputText value="#{updateVisitReelleView.visitReelle.info}"
+								styleClass="outputLabel" />
+								
+								<h:outputText value="Date: " />
+							<h:outputText value="#{updateVisitReelleView.visitReelle.date}"
+								styleClass="outputLabel" pattern="dd.MM.yyyy HH:mm" />
+								 
+
+							<h:outputText />
+							<h:outputText />
+						</h:panelGrid>
+					</h:panelGrid>
+
+					<p:commandButton value="Submit" action="#{updateVisitReelleView.update}"
+						update="growl" process="@this" 
+						oncomplete="window.location.href='#{facesContext.externalContext.requestContextPath}/pages/user/VisiteReelleClientList.xhtml';"/>
+						
+				</p:panel>
+			</p:tab>
+		</p:wizard>
+
+	</h:form>
+</body>
+</html>
+
+
+
+
+ 
+
+
+
+
+
+ 

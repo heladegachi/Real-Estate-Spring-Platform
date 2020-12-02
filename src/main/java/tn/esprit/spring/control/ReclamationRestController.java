@@ -13,11 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entity.Reclamation;
-import tn.esprit.spring.entity.Subscription;
-import tn.esprit.spring.entity.User;
-import tn.esprit.spring.service.EmailService;
 import tn.esprit.spring.service.ReclamationServiceImpl;
-import tn.esprit.spring.service.SubscripServiceImpl;
 @RestController
 public class ReclamationRestController {
 	@Autowired
